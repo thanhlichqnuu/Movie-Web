@@ -28,7 +28,7 @@ const closeSearchModal = () => {
 
 <template>
   <div>
-    <v-app-bar density="comfortable" elevation="8" app>
+    <v-app-bar class="nav" density="comfortable" elevation="8" app>
       <v-app-bar-nav-icon
         v-if="isTabletAndMobile"
         class="mr-n5"
@@ -112,7 +112,7 @@ const closeSearchModal = () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .no-router-link-color {
   color: inherit;
 }
@@ -121,4 +121,5 @@ const closeSearchModal = () => {
   width: 100px;
   height: auto;
 }
+
 </style>

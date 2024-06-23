@@ -1,15 +1,15 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useWindowSize } from '@vueuse/core';
 import axios from 'axios';
 import { toast } from 'vue3-toastify';
-import { useHead } from '@unhead/vue';
+
 import { get, set } from 'idb-keyval';
 import NewlyMovies from '@/components/NewlyMovies.vue';
 import FacebookComments from '@/components/FacebookComments.vue';
 import MovieList from '@/components/MovieList.vue';
-const currentYear = new Date().getFullYear();
+
 
 const route = useRoute();
 const router = useRouter();
@@ -20,7 +20,7 @@ const currentPage = ref(Number(route.query.page) || 1);
 const movies = ref([]);
 const totalPages = ref(1);
 
-const updateMetaTitle = () => useHead({ title: `Danh Sách Phim Lẻ Đầy Đủ Nhất | Tổng Hợp Những Phim Lẻ Hay | Phim Lẻ Mới Nhất ${currentYear}` });
+
 
 const getMovies = async (page) => {
   try {
@@ -40,9 +40,7 @@ const getMovies = async (page) => {
     }
   } catch {
     toast.error('Không thể tải danh sách phim!');
-  } finally {
-    updateMetaTitle();
-  }
+  } 
 };
 
 const prefetchNextPage = async (page) => {
@@ -60,6 +58,7 @@ watch(
     currentPage.value = Number(newPage) || 1;
     await getMovies(currentPage.value);
     prefetchNextPage(currentPage.value);
+    await nextTick()
     window.scrollTo({ top: 0, behavior: 'smooth' });
   },
   { immediate: true }

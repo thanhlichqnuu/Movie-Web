@@ -1,9 +1,8 @@
 <script setup>
-import { ref, computed, nextTick, onMounted, onUnmounted, watch } from "vue";
+import { ref, computed, nextTick, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
 import { toast } from "vue3-toastify";
-import { useHead } from "@unhead/vue";
 import { useWindowSize } from "@vueuse/core";
 import { useFacebookStore } from "@/stores/useFacebookStore";
 import Artplayer from "artplayer";
@@ -21,14 +20,6 @@ const facebookStore = useFacebookStore();
 const { width: windowWidth } = useWindowSize();
 const isTabletAndMobile = computed(() => windowWidth.value < 960);
 
-const updateMetaTitle = () => {
-  if (movie.value && currentEpisode.value) {
-    useHead({
-      title: `${movie.value.movie.name} - Tập ${currentEpisode.value.name}`,
-    });
-  }
-};
-
 const getMoviePlay = async (slugMovie) => {
   try {
     const { data } = await axios.get(`https://ophim1.com/phim/${slugMovie}`);
@@ -36,8 +27,6 @@ const getMoviePlay = async (slugMovie) => {
     episodes.value = data.episodes[0].server_data;
   } catch {
     toast.error("Không thể tải dữ liệu!");
-  } finally {
-    updateMetaTitle();
   }
 };
 
@@ -59,7 +48,6 @@ const selectEpisode = async (episode) => {
 };
 
 const setupPlayer = async () => {
-  await nextTick();
   if (!currentEpisode.value || !currentEpisode.value.link_m3u8) {
     return;
   }
@@ -105,6 +93,21 @@ const setupPlayer = async () => {
   });
 };
 
+watch(
+  currentEpisode,
+  (newEpisode) => {
+    if (newEpisode?.name) {
+      if (newEpisode.slug.includes("tap")) {
+        document.title = `${movie.value.movie.name} - ${newEpisode.name}`;
+      }
+      else {
+        document.title = `${movie.value.movie.name} - Tập ${newEpisode.name}`;
+      }
+    }
+  },
+  { immediate: true }
+);
+
 watch(currentEpisode, setupPlayer);
 
 onMounted(() => {
@@ -112,11 +115,6 @@ onMounted(() => {
   facebookStore.initFacebookComments();
 });
 
-onUnmounted(() => {
-  if (player.value) {
-    player.value.destroy();
-  }
-});
 </script>
 
 <template>

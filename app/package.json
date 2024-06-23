@@ -7,7 +7,6 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@unhead/vue": "^1.9.11",
     "@vueuse/core": "^10.10.0",
     "artplayer": "^5.1.5",
     "artplayer-plugin-hls-quality": "^2.0.0",

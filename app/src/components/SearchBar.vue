@@ -63,6 +63,7 @@ const navigateToDetail = (slugMovie) => {
         <v-avatar
           rounded="0"
           :image="`https://img.ophim.live/uploads/movies/${movie.thumb_url}`"
+          loading="lazy"
           max-width="50"
           max-height="50"
           class="mr-2"

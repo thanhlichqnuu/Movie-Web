@@ -22,7 +22,7 @@ const navigateToDetail = () => {
     <v-img
       max-height="250"
       :src="`https://img.ophim.live/uploads/movies/${movie.thumb_url}`"
-      :lazy-src="`https://img.ophim.live/uploads/movies/${movie.thumb_url}`"
+      loading="lazy"
       @load="() => (loadedThumb[movie._id] = true)"
     />
     <v-card-title class="text-subtitle-1 text-center" v-if="movie.name">

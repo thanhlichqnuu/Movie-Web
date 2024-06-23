@@ -9,7 +9,7 @@ import FooterBar from "@/components/FooterBar.vue";
     <nav-bar />
     <v-main>
       <v-container class="pt-0">
-        <player-modal :key="$route.path"/>
+        <player-modal/>
       </v-container>
     </v-main>
     <footer-bar />

@@ -2,7 +2,6 @@
 import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
-import { useHead } from "@unhead/vue";
 import TrailerModal from "../components/TrailerModal";
 import { toast } from "vue3-toastify";
 import sanitizeHtml from "sanitize-html";
@@ -15,21 +14,12 @@ const facebookStore = useFacebookStore();
 const movie = ref(null);
 const isShowTrailer = ref(false);
 
-const updateMetaTitle = () => {
-  if (movie.value) {
-    useHead({
-      title: `${movie.value.movie.name} - ${movie.value.movie.origin_name}`,
-    });
-  }
-};
-
 const getMovieDetail = async (slugMovie) => {
   try {
     const cacheKey = `movie_detail_${slugMovie}`;
     const cachedMovie = await get(cacheKey);
     if (cachedMovie) {
       movie.value = cachedMovie;
-      updateMetaTitle();
       return;
     }
 
@@ -42,9 +32,7 @@ const getMovieDetail = async (slugMovie) => {
     set(cacheKey, data);
   } catch {
     toast.error("Không thể tải thông tin phim!");
-  } finally {
-    updateMetaTitle();
-  }
+  } 
 };
 
 watch(
@@ -80,6 +68,15 @@ const loadMovie = () => {
     },
   });
 };
+
+watch(movie, 
+  (newMovie) => {
+    if (newMovie?.name && newMovie?.origin_name) {
+      document.title = `${newMovie.movie.name} - ${newMovie.movie.origin_name}`
+    }
+  },
+  {immediate: true}
+)
 
 onMounted(facebookStore.initFacebookComments);
 </script>

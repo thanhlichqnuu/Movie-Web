@@ -1,14 +1,9 @@
 <script setup>
 import { onMounted, onBeforeUnmount } from "vue";
 import { useTheme } from "vuetify";
-import { useHead } from "@unhead/vue";
 
 const theme = useTheme();
 const originalTheme = theme.global.name.value;
-
-useHead({
-  title: "Mọt Phim Mới - motphimmoi.com",
-});
 
 onMounted(() => {
   theme.global.name.value = "light";

@@ -1,15 +1,14 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { useWindowSize } from '@vueuse/core';
-import axios from 'axios';
-import { toast } from 'vue3-toastify';
-import { useHead } from '@unhead/vue';
-import { get, set } from 'idb-keyval';
-import NewlyMovies from '@/components/NewlyMovies.vue';
-import FacebookComments from '@/components/FacebookComments.vue';
-import MovieList from '@/components/MovieList.vue';
-const currentYear = new Date().getFullYear();
+import { ref, computed, watch, nextTick } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useWindowSize } from "@vueuse/core";
+import axios from "axios";
+import { toast } from "vue3-toastify";
+
+import { get, set } from "idb-keyval";
+import NewlyMovies from "@/components/NewlyMovies.vue";
+import FacebookComments from "@/components/FacebookComments.vue";
+import MovieList from "@/components/MovieList.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -20,8 +19,6 @@ const currentPage = ref(Number(route.query.page) || 1);
 const movies = ref([]);
 const totalPages = ref(1);
 
-const updateMetaTitle = () => useHead({ title: `Danh Sách Phim Bộ Đầy Đủ Nhất | Tổng Hợp Những Phim Bộ Hay | Phim Bộ Mới Nhất ${currentYear}` });
-
 const getMovies = async (page) => {
   try {
     const cacheKey = `all_series_page_${page}`;
@@ -30,18 +27,21 @@ const getMovies = async (page) => {
       movies.value = cachedMovies.items;
       totalPages.value = cachedMovies.pagination.totalPages;
     } else {
-      const { data } = await axios.get(`https://ophim1.com/v1/api/danh-sach/phim-bo?page=${page}`);
+      const { data } = await axios.get(
+        `https://ophim1.com/v1/api/danh-sach/phim-bo?page=${page}`
+      );
       movies.value = data.data.items;
-      totalPages.value = Math.ceil(data.data.params.pagination.totalItems / data.data.params.pagination.totalItemsPerPage);
+      totalPages.value = Math.ceil(
+        data.data.params.pagination.totalItems /
+          data.data.params.pagination.totalItemsPerPage
+      );
       set(cacheKey, {
         items: data.data.items,
         pagination: { totalPages: totalPages.value },
       });
     }
   } catch {
-    toast.error('Không thể tải danh sách phim!');
-  } finally {
-    updateMetaTitle();
+    toast.error("Không thể tải danh sách phim!");
   }
 };
 
@@ -60,7 +60,8 @@ watch(
     currentPage.value = Number(newPage) || 1;
     await getMovies(currentPage.value);
     prefetchNextPage(currentPage.value);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    await nextTick()
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
   { immediate: true }
 );
@@ -90,4 +91,3 @@ prefetchNextPage(currentPage.value);
     </v-row>
   </v-container>
 </template>
-

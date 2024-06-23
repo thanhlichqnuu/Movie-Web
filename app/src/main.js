@@ -1,7 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import { createHead } from "@unhead/vue";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
@@ -21,8 +20,6 @@ const vuetify = createVuetify({
     defaultTheme: "dark",
   },
 });
-
-const head = createHead();
 const pinia = createPinia();
 
 const app = createApp(App);
@@ -31,7 +28,6 @@ app
   .use(router)
   .use(vuetify)
   .use(VueAxios, axios)
-  .use(head)
   .use(Vue3Toastify, {
     autoClose: 1000,
   })
