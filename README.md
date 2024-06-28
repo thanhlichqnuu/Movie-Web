@@ -34,6 +34,7 @@ git clone https://github.com/thanhlichqnuu/Movie-Web.git
 ```
 Cài đặt các phụ thuộc:
 ```
+cd app
 npm install
 ```
 Chạy ứng dụng:
