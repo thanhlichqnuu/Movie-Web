@@ -7,8 +7,8 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const lastUpdateLabel = computed(() => t('lastUpdateLabel'));
-const movieLabel = computed(() => t('singleMovie'));
-const seriesLabel = computed(() => t('seriesMovie'));
+const movieLabel = computed(() => t(''));
+const seriesLabel = computed(() => t('seriesLabel'));
 
 const tabs = ref([
   { name: lastUpdateLabel, api: 'https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=1' },
