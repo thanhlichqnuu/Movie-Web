@@ -1,0 +1,9 @@
+{
+    "singleMovie": "MOVIE",
+    "seriesMovie": "SERIES",
+    "keyword": "Search by movie name...",
+    "status": "Status:",
+    "episodes": "Episodes:",
+    "time": "Time",
+    "category": "Category",
+}

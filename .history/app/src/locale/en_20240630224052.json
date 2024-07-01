@@ -1,0 +1,17 @@
+{
+    "singleMovie": "MOVIE",
+    "seriesMovie": "SERIES",
+    "keyword": "Search by movie name...",
+    "status": "Status:",
+    "episodes": "Episodes:",
+    "time": "Time:",
+    "category": "Category:",
+    "director": "Director:",
+    "country": "Country:",
+    "quality": "Quality:",
+    "releaseYear": "Release Year:",
+    "subtitle": "Subtitle:",
+    "play": "Play",
+    "watchTrailer": "Watch trailer",
+    "moreInfo": ""
+}
