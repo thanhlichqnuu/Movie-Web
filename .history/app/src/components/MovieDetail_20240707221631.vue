@@ -8,7 +8,9 @@ import { toast } from "vue3-toastify";
 import sanitizeHtml from "sanitize-html";
 import { useFacebookStore } from "@/stores/useFacebookStore";
 import { get, set } from "idb-keyval";
+import { useStateThemeStore } from "@/stores/useStateThemeStore";
 
+const store = useStateThemeStore();
 const route = useRoute();
 const router = useRouter();
 const facebookStore = useFacebookStore();
@@ -16,6 +18,8 @@ const movie = ref(null);
 const isShowTrailer = ref(false);
 const { width: windowWidth } = useWindowSize();
 const isSmallTabletAndMobile = computed(() => windowWidth.value < 768);
+
+const backgroundOpacity = computed(() => (store.isDark ? 0.5 : 0.5));
 
 const getMovieDetail = async (slugMovie) => {
     const cacheKey = `movie_detail_${slugMovie}`;
@@ -361,7 +365,7 @@ onMounted(facebookStore.initFacebookComments);
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .text-size {

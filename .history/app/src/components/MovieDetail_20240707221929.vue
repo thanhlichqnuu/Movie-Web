@@ -8,7 +8,9 @@ import { toast } from "vue3-toastify";
 import sanitizeHtml from "sanitize-html";
 import { useFacebookStore } from "@/stores/useFacebookStore";
 import { get, set } from "idb-keyval";
+import { useStateThemeStore } from "@/stores/useStateThemeStore";
 
+const store = useStateThemeStore();
 const route = useRoute();
 const router = useRouter();
 const facebookStore = useFacebookStore();

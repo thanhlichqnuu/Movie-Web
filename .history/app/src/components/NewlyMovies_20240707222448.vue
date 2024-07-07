@@ -23,6 +23,7 @@ const router = useRouter();
 const currentTab = ref(tabs.value[0].name);
 const movies = ref([]);
 
+
 const getMovies = async (api) => {
   try {
     const res = await axios.get(api);
@@ -56,7 +57,7 @@ const navigateToDetail = (slug) => {
       <div class="line" />
     </div>
     
-    <v-tabs v-show="isLoading" v-model="currentTab">
+    <v-tabs v-model="currentTab">
       <v-tab v-for="tab in tabs" :key="tab.name" @click="changeTab(tab)" class="tab-active">
         {{ tab.name }}
         <div v-if="tab.isActive" :class="themeStore.isDark ? 'tab-indicator-white' : 'tab-indicator-black'" />
