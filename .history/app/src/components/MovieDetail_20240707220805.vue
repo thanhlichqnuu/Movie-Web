@@ -19,7 +19,7 @@ const isShowTrailer = ref(false);
 const { width: windowWidth } = useWindowSize();
 const isSmallTabletAndMobile = computed(() => windowWidth.value < 768);
 
-const backgroundOpacity = computed(() => (store.isDark ? 0.7 : 0.5));
+const backgroundOpacity = computed(() => (store.isDark ? 0.1 : 0.5));
 
 const getMovieDetail = async (slugMovie) => {
     const cacheKey = `movie_detail_${slugMovie}`;
