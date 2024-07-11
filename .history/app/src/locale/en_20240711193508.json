@@ -9,7 +9,7 @@
     "director": "Director:",
     "country": "Country:",
     "quality": "Quality:",
-    "releaseYear": "Release year:",
+    "releaseYear": "Release Year:",
     "subtitle": "Subtitle:",
     "play": "Play",
     "watchTrailer": "Watch trailer",
@@ -18,5 +18,5 @@
     "Home": "Home",
     "Contact": "Contact us",
     "QA": "Q&A Movie",
-    "newEpisode": "New episode:"
+    "newEpisode": "New "
 }

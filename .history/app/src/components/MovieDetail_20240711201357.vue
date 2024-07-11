@@ -189,24 +189,20 @@ watch(
                     }}</v-list-item-title>
                   </v-col>
                   <v-col
-                    v-for="episode in movie.episodes?.[0].server_data?.slice(-3).reverse()"
+                    v-for="episode in movie.episodes[0].server_data.slice(-3)"
                     :key="episode.slug"
                     cols="2"
                     class="d-flex"
+                    
                   >
-                    <v-btn
-                      color="grey-darken-2"
-                      @click="
-                        router.push({
-                          name: 'Player',
-                          params: {
-                            slugEpisode: episode.slug,
-                          },
-                        })
-                      "
-                      size="small"
-                      >{{ episode.name }}</v-btn
-                    >
+                    <v-btn color="grey-darken-2" @click="router.push({
+      name: 'Player',
+      params: {
+        slugEpisode: episode.slug, // Use 'episode.slug' instead of 'movie.value.episodes[0].server_data[0].slug'
+      },
+    })" size="small">{{
+                      episode.name
+                    }}</v-btn>
                   </v-col>
                 </v-row>
               </v-list-item>

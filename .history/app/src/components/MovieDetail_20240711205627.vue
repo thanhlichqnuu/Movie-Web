@@ -189,7 +189,7 @@ watch(
                     }}</v-list-item-title>
                   </v-col>
                   <v-col
-                    v-for="episode in movie.episodes?.[0].server_data?.slice(-3).reverse()"
+                    v-for="episode in movie.episodes?.[0].server_data?.slice(-3)"
                     :key="episode.slug"
                     cols="2"
                     class="d-flex"

@@ -189,24 +189,14 @@ watch(
                     }}</v-list-item-title>
                   </v-col>
                   <v-col
-                    v-for="episode in movie.episodes?.[0].server_data?.slice(-3).reverse()"
+                    v-for="episode in movie.episodes[0].server_data.slice(-3)"
                     :key="episode.slug"
                     cols="2"
                     class="d-flex"
                   >
-                    <v-btn
-                      color="grey-darken-2"
-                      @click="
-                        router.push({
-                          name: 'Player',
-                          params: {
-                            slugEpisode: episode.slug,
-                          },
-                        })
-                      "
-                      size="small"
-                      >{{ episode.name }}</v-btn
-                    >
+                    <v-btn @click="loadMovie" size="small">{{
+                      episode.name
+                    }}</v-btn>
                   </v-col>
                 </v-row>
               </v-list-item>
@@ -274,30 +264,9 @@ watch(
                   </v-col>
                 </v-row>
               </v-list-item>
+              
             </v-col>
             <v-col cols="12" sm="6">
-              <v-list-item>
-                <v-row align="center">
-                  <v-col cols="4" class="d-flex justify-end">
-                    <v-list-item-title class="text-size">{{
-                      $t("director")
-                    }}</v-list-item-title>
-                  </v-col>
-                  <v-col cols="8" class="d-flex">
-                    <v-list-item-subtitle class="text-size">
-                      <span
-                        v-for="(director, index) in movie.movie.director"
-                        :key="index"
-                      >
-                        {{ director
-                        }}<span v-if="index < movie.movie.director.length - 1"
-                          >,
-                        </span>
-                      </span>
-                    </v-list-item-subtitle>
-                  </v-col>
-                </v-row>
-              </v-list-item>
               <v-list-item>
                 <v-row align="center">
                   <v-col cols="4" class="d-flex justify-end">
