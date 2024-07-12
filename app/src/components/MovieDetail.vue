@@ -48,7 +48,7 @@ watch(data, (newMovie) => {
 
 const trailerAvailable = computed(() => movie.value.movie.trailer_url);
 
-const loadTrailer = () => (isShowTrailer.value = true);
+const loadTrailer = () => isShowTrailer.value = true;
 
 const episodeAvailable = computed(
   () => movie.value.episodes[0].server_data[0].slug
@@ -174,14 +174,14 @@ watch(
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" >
           <v-row
             :class="{
               'd-flex align-center flex-column': isSmallTabletAndMobile,
             }"
           >
             <v-col cols="12" sm="6">
-              <v-list-item>
+              <v-list-item v-if="episodeAvailable">
                 <v-row align="center">
                   <v-col cols="4" class="d-flex justify-end">
                     <v-list-item-title class="text-size">{{
@@ -189,7 +189,9 @@ watch(
                     }}</v-list-item-title>
                   </v-col>
                   <v-col
-                    v-for="episode in movie.episodes?.[0].server_data?.slice(-3).reverse()"
+                    v-for="episode in movie.episodes?.[0].server_data
+                      ?.slice(-3)
+                      .reverse()"
                     :key="episode.slug"
                     cols="2"
                     class="d-flex"
@@ -275,7 +277,7 @@ watch(
                 </v-row>
               </v-list-item>
             </v-col>
-            <v-col cols="12" sm="6">
+            <v-col  cols="12" sm="6">
               <v-list-item>
                 <v-row align="center">
                   <v-col cols="4" class="d-flex justify-end">

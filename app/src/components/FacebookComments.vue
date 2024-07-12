@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted } from "vue";
 import { useFacebookStore } from "@/stores/useFacebookStore";
-import { useI18n } from "vue-i18n";
 
 const facebookStore = useFacebookStore();
 const props = defineProps({

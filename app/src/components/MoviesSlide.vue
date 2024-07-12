@@ -31,7 +31,7 @@ movieStore.getMovies(props.apiKey);
     cycle
     hide-delimiters
     interval="5000"
-    height="85vh"
+    height="90vh"
     v-model="currentSlide"
   >
     <v-carousel-item v-for="movie in movies" :key="movie._id">
