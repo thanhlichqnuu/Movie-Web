@@ -1,0 +1,92 @@
+<script setup>
+import { computed, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import axios from "axios";
+import { useI18n } from "vue-i18n";
+import { useLocaleStore } from "@/stores/useLocaleStore";
+
+const localeStore = useLocaleStore()
+const route = useRoute();
+const router = useRouter();
+const movieName = ref(null);
+const movieOriginName = ref(null);
+const isLoading = ref(true);
+const { t } = useI18n();
+
+const homeLabel = computed(() => t('Home'));
+
+const isCurrentRoute = (item, index) => {
+  return index === breadcrumbs.value.length - 1;
+};
+
+const getMovieName = async (slug) => {
+  try {
+    isLoading.value = true;
+    const { data } = await axios.get(`https://apii.online/apii/phim/${slug}`);
+    movieName.value = data.movie.name;
+    movieOriginName.value = data.movie.origin_name;
+    isLoading.value = false;
+  } catch {
+    return;
+  }
+};
+
+const breadcrumbs = computed(() => {
+  const matchedRoutes = route.matched;
+  const currentQuery = route.query;
+  const homeBreadcrumb = {
+    text: homeLabel.value,
+    to: { path: "/", query: currentQuery },
+  };
+
+  const routeBreadcrumbs = matchedRoutes
+    .map((matchedRoute) => {
+      let text = matchedRoute.name;
+      let to = { path: matchedRoute.path, query: currentQuery };
+
+      if (matchedRoute.name === "Detail" && route.params.slugMovie) {
+        text = localeStore.locale === "VI" ? movieName.value : movieOriginName.value
+      } else if (matchedRoute.name === "Player") {
+        if (route.params.slugEpisode) {
+          return [
+            {
+              text: localeStore.locale === "VI" ? movieName.value : movieOriginName.value,
+              to: { path: `/${route.params.slugMovie}`, query: currentQuery },
+            },
+            {
+              text: route.params.slugEpisode,
+            },
+          ];
+        }
+      }
+
+      return {
+        text,
+        to,
+      };
+    })
+    .flat();
+
+  return [homeBreadcrumb, ...routeBreadcrumbs];
+});
+
+watch(
+  () => route.params.slugMovie,
+  (newSlug) => {
+    if (newSlug) {
+      getMovieName(newSlug);
+    }
+  },
+  { immediate: true }
+);
+</script>
+
+<template>
+  <v-breadcrumbs v-if="!isLoading" :items="breadcrumbs" divider="/">
+    <template v-slot:item="{ item, index }">
+      <v-breadcrumbs-item :to="item.to" :disabled="isCurrentRoute(item, index)">
+        {{ item.text }}
+      </v-breadcrumbs-item>
+    </template>
+  </v-breadcrumbs>
+</template>
