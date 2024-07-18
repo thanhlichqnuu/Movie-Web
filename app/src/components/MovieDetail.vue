@@ -148,13 +148,13 @@ watch(
                   <v-card-text class="text_dim_gray">{{
                     movie.movie.content
                   }}</v-card-text>
-                  <v-card-action class="d-flex justify-space-around">
+                  <v-card-action class="d-flex ml-4">
                     <v-btn
                       v-if="episodeAvailable"
                       color="light-blue-darken-1"
                       height="40"
                       @click="loadMovie"
-                      class="mr-n15"
+                      class="mr-3"
                       >{{ $t("play") }}</v-btn
                     >
                     <v-btn

@@ -17,7 +17,7 @@ const movies = ref([]);
 const totalPages = ref(1);
 
 const urls = () => {
-  let url = `https://apii.online/apii/danh-sach?type=single&page=${currentPage.value}&limit=12`;
+  let url = `https://apii.online/apii/danh-sach?type=single&page=${currentPage.value}`;
   if (route.query.year) url += `&year=${route.query.year}`;
   if (route.query.status) url += `&status=${route.query.status}`;
   if (route.query.country) url += `&country=${route.query.country}`;

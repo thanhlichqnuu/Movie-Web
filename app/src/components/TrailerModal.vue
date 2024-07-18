@@ -35,7 +35,6 @@ const close = () => {
       frameborder="0"
       allow="autoplay; encrypted-media; picture-in-picture"
       allowfullscreen
-      
       class="w-100"
       style="height: calc(80vh - 60px);"
     ></iframe>
