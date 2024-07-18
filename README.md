@@ -48,11 +48,11 @@ Mở trình duyệt và truy cập:
 http://localhost:8080
 ```
 ```
-├── public          # Thư mục chứa các file tĩnh
+├── public          # Folder chứa các file tĩnh
 ├── src
-│   ├── assets      # Thư mục chứa các file tài nguyên như ảnh, css
-│   ├── components  # Thư mục chứa các component của ứng dụng
-│   ├── pages       # Thư mục chứa các trang của ứng dụng
+│   ├── assets      # Folder chứa các file tài nguyên như ảnh, css
+│   ├── components  # Folder chứa các component của ứng dụng
+│   ├── pages       # Folder chứa các trang của ứng dụng
 │   ├── router      # Cấu hình Vue Router
 │   ├── stores      # Cấu hình Pinia
 │   ├── App.vue     # File root component
