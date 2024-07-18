@@ -6,6 +6,7 @@
 
 - Xem danh sách phim phổ biến và theo thể loại.
 - Tìm kiếm phim theo tên.
+- Lọc phim theo các tiêu chí: Thể loại, quốc gia, status, năm phát hành
 - Xem thông tin phim.
 - Xem trailer phim.
 - Xem episode phim.
@@ -17,7 +18,8 @@
 - **Vue Router 4**: Quản lý điều hướng giữa các trang.
 - **Axios**: Library HTTP Client để thực hiện các yêu cầu API.
 - **Pinia**: Library để quản lí các state.
-- **Ophim API**: Nguồn dữ liệu phim.
+- **SWRV**: Library hỗ trợ xử lí catching.
+- **Apii Online API**: Nguồn dữ liệu phim.
 
 ## Cài đặt và chạy ứng dụng
 
