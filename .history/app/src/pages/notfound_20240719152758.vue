@@ -5,13 +5,15 @@ import { useRouter } from "vue-router";
 
 const theme = useTheme();
 const originalTheme = theme.global.name.value;
-const router = useRouter();
+const router = useRouter()
 
 const navigateToHome = () => {
-  router.push({ name: "Home" });
+  router.push({ name: 'Home' })
 };
 
-theme.global.name.value = "light";
+
+  theme.global.name.value = "light";
+
 
 onBeforeUnmount(() => {
   theme.global.name.value = originalTheme;
@@ -29,7 +31,10 @@ onBeforeUnmount(() => {
           <div class="mt-n8">
             <div class="text-h5">Looks Like You're Lost</div>
             <p>The page you are looking for is not available</p>
-            <v-btn color="success mt-5" @click="navigateToHome">
+            <v-btn
+              color="success mt-5"
+              @click="navigateToHome"
+            >
               Go to Home
             </v-btn>
           </div>

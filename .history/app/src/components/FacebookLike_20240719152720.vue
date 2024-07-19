@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from "vue";
 import { useFacebookStore } from "@/stores/useFacebookStore";
 
 const facebookStore = useFacebookStore();

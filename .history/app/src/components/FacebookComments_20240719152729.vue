@@ -9,24 +9,27 @@ const props = defineProps({
   },
 });
 
-facebookStore.initFacebookPlugin();
+onMounted(() => {
+  facebookStore.initFacebookPlugin();
+});
 </script>
 
 <template>
   <div>
     <div>
       <h3 class="d-flex justify-start">
-        {{ $t("QA") }}
+        {{ $t('QA') }}
       </h3>
       <div class="line" />
     </div>
-    <div
-      class="fb-comments"
-      :data-href="href"
-      data-width="100%"
-      data-numposts="5"
-    ></div>
+  <div
+    class="fb-comments"
+    :data-href="href"
+    data-width="100%"
+    data-numposts="5"
+  ></div>
   </div>
+  
 </template>
 
 <style scoped>

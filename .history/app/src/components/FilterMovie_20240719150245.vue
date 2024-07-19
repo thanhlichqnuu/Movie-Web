@@ -11,6 +11,7 @@ const status = ref("");
 const country = ref("");
 const category = ref("");
 
+
 const statusOptions = computed(() => [
   { value: '', text: t('all') },
   { value: 'trailer', text: t('trailer') },
@@ -140,6 +141,9 @@ const categoryOptions = computed(() => [
   { value: 'khoa-hoc-vien-tuong', text: t('sciFi') }
 ]);
 
+
+
+
 const applyFilter = () => {
   const query = {};
   if (year.value) query.year = year.value;
@@ -218,7 +222,7 @@ const clearFilter = () => {
   padding-bottom: 2rem;
   margin-top: 3rem;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .v-form {

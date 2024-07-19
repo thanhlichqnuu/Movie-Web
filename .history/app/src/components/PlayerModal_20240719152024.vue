@@ -205,7 +205,7 @@ onUnmounted(() => {
             :key="index"
             @click="selectEpisode(episode)"
             :color="
-              episode === currentEpisode ? 'primary' : 'default'
+              episode === currentEpisode.slug ? 'primary' : 'default'
             "
             class="mx-1 my-1"
           >
