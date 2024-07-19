@@ -1,72 +1,74 @@
-# Web Xem Phim Sử Dụng Vue 3
+# Movie Streaming Website Using Vue 3
 
-Đây là một ứng dụng web xem phim đơn giản được xây dựng bằng Vue 3. Ứng dụng cho phép người dùng xem danh sách phim, tìm kiếm phim theo tên, xem thông tin chi tiết và xem phim theo tập.
+This is a movie streaming web application built with Vue 3. The application allows users to view movie lists, search for movies by name, view detailed information, and watch episodes.
 
-## Chức năng chính
+## Main Feature
 
-- Xem danh sách phim phổ biến và theo thể loại.
-- Tìm kiếm phim theo tên.
-- Lọc phim theo các tiêu chí: Thể loại, quốc gia, status, năm phát hành
-- Xem thông tin phim.
-- Xem trailer phim.
-- Xem episode phim.
+- View lists of popular movies.
+- Search for movies by name.
+- Filter movies by criteria: Genre, country, status, release year.
+- View movie information.
+- Watch movie trailers.
+- Watch movie episodes.
 
-## Công nghệ sử dụng
+## Technologies Used
 
-- **Vue 3**: Framework chính để xây dựng ứng dụng.
-- **Vuetify**: Library để xây dựng UI.
-- **Vue Router 4**: Quản lý điều hướng giữa các trang.
-- **Axios**: Library HTTP Client để thực hiện các yêu cầu API.
-- **Pinia**: Library để quản lí các state.
-- **SWRV**: Library hỗ trợ xử lí catching.
-- **Apii Online API**: Nguồn dữ liệu phim.
+- **Vue 3**: Main framework for building applications.
+- **Vuetify**: Library for building UI.
+- **Axios**: HTTP Client library for making API requests.
+- **Pinia**: Library for state management.
+- **SWRV**: Library for handling caching.
+- **ArtPlayer.js**: Library for supporting episode playback.
+- **Hls.js**: Library for handling m3u8 file.
+- **Apii Online API**: Movie data source.
 
-## Cài đặt và chạy ứng dụng
+## Installation and Running the Application
 
-### Yêu cầu hệ thống
+### System Requirements
 
-- Node.js >= 20.x
+- Node.js >= 18.x
 - npm >= 10.x
 
-### Hướng Dẫn Cài Đặt
+### Installation Guide
 
-1. Clone repository về máy:
+1. Clone the repository to your machine:
 ```
 git clone https://github.com/thanhlichqnuu/Movie-Web.git
 ```
-Cài đặt các phụ thuộc:
+Install the dependencies:
 ```
 cd app
 npm install
 ```
-Chạy ứng dụng:
+Run the application:
 ```
 npm run serve
 ```
-Mở trình duyệt và truy cập:
+Open your browser and navigate to:
 ```
 http://localhost:8080
 ```
 ```
-├── public          # Folder chứa các file tĩnh
+├── public          # Folder containing static files
 ├── src
-│   ├── assets      # Folder chứa các file tài nguyên như ảnh, css
-│   ├── components  # Folder chứa các component của ứng dụng
-│   ├── pages       # Folder chứa các trang của ứng dụng
-│   ├── router      # Cấu hình Vue Router
-│   ├── stores      # Cấu hình Pinia
-│   ├── App.vue     # File root component
-│   ├── main.js     # File main entry point
-├── package.json    # File cấu hình npm
+│   ├── assets      # Folder containing assets like images and CSS
+│   ├── components  # Folder containing application components
+│   ├── pages       # Folder containing application pages
+│   ├── router      # Vue Router configuration
+│   ├── stores      # Pinia configuration
+│   ├── App.vue     # Root component file
+│   ├── main.js     # Main entry point file
+├── package.json    # npm configuration file
+
 ```
 
-## Triển khai
-Build cho môi trường sản xuất:
+## Deployment
+Build for production environment:
 ```
 npm run build
 ```
-## Đóng góp
-Nếu bạn muốn đóng góp vào dự án, vui lòng tạo một Pull Request hoặc mở một Issue mới trên GitHub.
+## Contributing
+If you would like to contribute to the project, please create a Pull Request or open a new Issue on GitHub.
 
-## Liên hệ
-Nếu bạn có bất kỳ câu hỏi hoặc góp ý nào về dự án, vui lòng liên hệ qua email: thanhlich2103gg@gmail.com
+## Contact
+If you have any questions or feedback about the project, please contact via email: thanhlich2103gg@gmail.com
