@@ -146,7 +146,7 @@ const applyFilter = () => {
   if (year.value) query.year = year.value;
   if (status.value) query.status = status.value;
   if (country.value) query.country = country.value;
-  if (genre.value) query.category = genre.value;
+  if (genre.value) query.genre = genre.value;
   query.page = 1;
   router.push({ query });
   emit("closeFilterModal");

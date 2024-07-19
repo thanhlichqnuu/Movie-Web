@@ -270,7 +270,7 @@ watch(
                         v-for="(category, index) in movie.movie.category"
                         :key="index"
                       >
-                        {{ category.name
+                        {{ ca.name
                         }}<span v-if="index < movie.movie.category.length - 1"
                           >,
                         </span>

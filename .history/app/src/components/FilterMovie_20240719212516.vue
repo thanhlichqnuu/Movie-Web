@@ -108,7 +108,7 @@ const countryOptions = computed(() => [
   { value: 'belarus', text: t('belarus') }
 ]);
 
-const genreOptions = computed(() => [
+const categoryOptions = computed(() => [
   { value: '', text: t('all') },
   { value: 'tinh-cam', text: t('romance') },
   { value: 'hai-huoc', text: t('comedy') },
@@ -146,7 +146,7 @@ const applyFilter = () => {
   if (year.value) query.year = year.value;
   if (status.value) query.status = status.value;
   if (country.value) query.country = country.value;
-  if (genre.value) query.category = genre.value;
+  if (category.value) query.category = category.value;
   query.page = 1;
   router.push({ query });
   emit("closeFilterModal");
@@ -156,7 +156,7 @@ const clearFilter = () => {
   year.value = "";
   status.value = "";
   country.value = "";
-  genre.value = "";
+  category.value = "";
 };
 </script>
 
@@ -185,9 +185,9 @@ const clearFilter = () => {
         density="comfortable"
       ></v-select>
       <v-select
-        v-model="genre"
-        :items="genreOptions"
-        :label="$t('genreFilter')"
+        v-model="category"
+        :items="categoryOptions"
+        :label="$t('categoryFilter')"
         item-value="value"
         item-title="text"
         density="comfortable"

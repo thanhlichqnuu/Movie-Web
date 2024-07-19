@@ -267,7 +267,7 @@ watch(
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">
                       <span
-                        v-for="(category, index) in movie.movie.category"
+                        v-for="(genre, index) in movie.movie.genre"
                         :key="index"
                       >
                         {{ category.name

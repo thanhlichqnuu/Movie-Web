@@ -149,7 +149,7 @@ const routeStatus = computed(() => ({
           <v-list-item-title class="text-button">TV SHOW</v-list-item-title>
         </v-list-item>
       </router-link>
-      <v-list-item v-if="!routeStatus.isOnSectionMovie && !routeStatus.isOnMovieDetail && !routeStatus.isOnPlayerModal"  @click="openFilterModal">
+      <v-list-item v-if="!routeStatus.isOnSectionMovie || !routeStatus.isOnMovieDetail || !routeStatus.isOnPlayerModal"  @click="openFilterModal">
         <v-list-item-title class="text-button">{{ $t('filter') }}</v-list-item-title>
       </v-list-item>
     </v-navigation-drawer>

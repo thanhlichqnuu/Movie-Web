@@ -63,7 +63,7 @@ const routeStatus = computed(() => ({
     <v-app-bar
       class="nav"
       density="compact"
-      style="position: absolute"
+     
       color="transparent"
       app
     >
