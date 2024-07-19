@@ -26,7 +26,7 @@ This is a movie streaming web application built with Vue 3. The application allo
 
 ### System Requirements
 
-- Node.js >= 20.x
+- Node.js >= 18.x
 - npm >= 10.x
 
 ### Installation Guide
