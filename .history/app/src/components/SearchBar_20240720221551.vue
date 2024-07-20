@@ -67,7 +67,7 @@ const handleVoiceSearch = () => {
 
   sr.onresult = (e) => {
     let transcript = e.results[0][0].transcript.toLowerCase();
-    if (transcript.endsWith(".") || transcript.endsWith("?")) {
+    if (transcript.endsWith(".")) {
       transcript = transcript.slice(0, -1);
     }
     keyword.value = transcript;
