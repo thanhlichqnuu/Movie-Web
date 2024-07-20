@@ -7,7 +7,6 @@ import { useI18n } from "vue-i18n";
 import startSoundSrc from '../assets/start-record_effect.mp3';
 import endSoundSrc from '../assets/end-record_effect.mp3';
 import endSpeechSoundSrc from '../assets/result-record_effect.mp3';
-import sr from "@/util/speechRecognition";
 
 const emit = defineEmits(["closeSearchModal"]);
 const { t } = useI18n();
@@ -54,6 +53,10 @@ const navigateToDetail = (slug) => {
 };
 
 const translateLabel = computed(() => t("keyword"));
+
+const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
+const sr = new Recognition()
+window.sr = sr;
 
 const handleVoiceSearch = () => {
   sr.lang = 'vi-VN';

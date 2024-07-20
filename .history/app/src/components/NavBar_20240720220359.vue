@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, defineAsyncComponent } from "vue";
+import { ref, computed, defineAsyncComponent } from "vue";
 import { useRoute } from "vue-router"
 import { useWindowSize } from "@vueuse/core";
 import { useTheme } from "vuetify";
@@ -58,8 +58,8 @@ const routeStatus = computed(() => ({
   isOnPlayerModal: route.name === 'Player'
 }));
 
-watch(isShowSearchModal, (newValue) => {
-  if (!newValue) {
+watch(isShowSearchModal, (newVal) => {
+  if (!newVal) {
     sr.stop();
   }
 });

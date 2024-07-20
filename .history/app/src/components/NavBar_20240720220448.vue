@@ -59,7 +59,7 @@ const routeStatus = computed(() => ({
 }));
 
 watch(isShowSearchModal, (newValue) => {
-  if (!newValue) {
+  if (!newVal) {
     sr.stop();
   }
 });

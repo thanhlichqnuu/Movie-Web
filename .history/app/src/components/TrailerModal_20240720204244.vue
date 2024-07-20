@@ -43,7 +43,7 @@ onUnmounted(() => {
 
 <template>
   <v-dialog
-    v-model="props.isShowTrailerModal"
+    v-model="props.show"
     width="70%"
     @click="closeTrailerModal"
     opacity="0.1"

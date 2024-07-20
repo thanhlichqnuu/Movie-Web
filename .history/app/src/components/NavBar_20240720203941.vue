@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, defineAsyncComponent } from "vue";
+import { ref, computed, defineAsyncComponent } from "vue";
 import { useRoute } from "vue-router"
 import { useWindowSize } from "@vueuse/core";
 import { useTheme } from "vuetify";
@@ -52,17 +52,14 @@ const changeLocale = (newLocale) => {
   localeStore.setLocale(newLocale);
 };
 
+co
+
 const routeStatus = computed(() => ({
   isOnSectionMovie: route.name === 'Home',
   isOnMovieDetail: route.name === 'Detail',
   isOnPlayerModal: route.name === 'Player'
 }));
 
-watch(isShowSearchModal, (newValue) => {
-  if (!newValue) {
-    sr.stop();
-  }
-});
 </script>
 
 <template>

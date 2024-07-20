@@ -1,11 +1,11 @@
 <script setup>
-import { ref, computed, watch, defineAsyncComponent } from "vue";
+import { ref, computed, defineAsyncComponent } from "vue";
 import { useRoute } from "vue-router"
 import { useWindowSize } from "@vueuse/core";
 import { useTheme } from "vuetify";
 import { useStateThemeStore } from "@/stores/useStateThemeStore";
 import { useLocaleStore } from "@/stores/useLocaleStore";
-import sr from "@/util/speechRecognition";
+import { sr } from "@/components/SearchBar.vue";
 
 const route = useRoute()
 const themeStore = useStateThemeStore();
@@ -58,11 +58,6 @@ const routeStatus = computed(() => ({
   isOnPlayerModal: route.name === 'Player'
 }));
 
-watch(isShowSearchModal, (newValue) => {
-  if (!newValue) {
-    sr.stop();
-  }
-});
 </script>
 
 <template>

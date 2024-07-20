@@ -55,6 +55,9 @@ const navigateToDetail = (slug) => {
 
 const translateLabel = computed(() => t("keyword"));
 
+const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
+const sr = new Recognition()
+
 const handleVoiceSearch = () => {
   sr.lang = 'vi-VN';
   sr.continuous = false;

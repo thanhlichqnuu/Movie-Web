@@ -1,11 +1,10 @@
 <script setup>
-import { ref, computed, watch, defineAsyncComponent } from "vue";
+import { ref, computed, defineAsyncComponent } from "vue";
 import { useRoute } from "vue-router"
 import { useWindowSize } from "@vueuse/core";
 import { useTheme } from "vuetify";
 import { useStateThemeStore } from "@/stores/useStateThemeStore";
 import { useLocaleStore } from "@/stores/useLocaleStore";
-import sr from "@/util/speechRecognition";
 
 const route = useRoute()
 const themeStore = useStateThemeStore();
@@ -37,7 +36,6 @@ const openSearchModal = () => {
 
 const closeSearchModal = () => {
   isShowSearchModal.value = false;
-  sr.stop();
 };
 
 const openFilterModal = () => {
@@ -58,11 +56,6 @@ const routeStatus = computed(() => ({
   isOnPlayerModal: route.name === 'Player'
 }));
 
-watch(isShowSearchModal, (newValue) => {
-  if (!newValue) {
-    sr.stop();
-  }
-});
 </script>
 
 <template>
@@ -156,7 +149,7 @@ watch(isShowSearchModal, (newValue) => {
           <v-list-item-title class="text-button">TV SHOW</v-list-item-title>
         </v-list-item>
       </router-link>
-      <v-list-item v-if="!routeStatus" @click="openFilterModal">
+      <v-list-item v-if="!r"  @click="openFilterModal">
         <v-list-item-title class="text-button">{{ $t('filter') }}</v-list-item-title>
       </v-list-item>
     </v-navigation-drawer>

@@ -50,7 +50,7 @@ watch(data, (newMovie) => {
 
 const trailerAvailable = computed(() => movie.value.movie.trailer_url);
 
-const loadTrailer = () => (isShowTrailerModal.value = true);
+const loadTrailer = () => (isShowTrailer.value = true);
 
 const episodeAvailable = computed(
   () => movie.value.episodes[0].server_data[0].slug
@@ -74,6 +74,8 @@ watch(
   },
   { immediate: true }
 );
+
+console.log(isShowTrailer.value)
 </script>
 
 <template>
@@ -169,10 +171,10 @@ watch(
               </div>
             </v-col>
           </template>
-          <trailer-modal
-            :isShowTrailerModal="isShowTrailerModal"
+          <TrailerModal
+            :isShowTrailerModal="isShowTrailer"
             :url="movie.movie.trailer_url"
-            @closeTrailerModal="isShowTrailerModal = false"
+            @closeTrailerModal="isShowTrailer = false"
           />
         </v-col>
       </v-row>

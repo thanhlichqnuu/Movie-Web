@@ -2,7 +2,7 @@
 import { computed, ref, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
-  isShowTrailerModal: {
+  show: {
     type: Boolean,
     required: true
   },
@@ -43,9 +43,9 @@ onUnmounted(() => {
 
 <template>
   <v-dialog
-    v-model="props.isShowTrailerModal"
+    v-model="props.show"
     width="70%"
-    @click="closeTrailerModal"
+    
     opacity="0.1"
   >
     <iframe

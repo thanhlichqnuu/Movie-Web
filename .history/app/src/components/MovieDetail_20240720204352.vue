@@ -169,10 +169,10 @@ watch(
               </div>
             </v-col>
           </template>
-          <trailer-modal
-            :isShowTrailerModal="isShowTrailerModal"
+          <TrailerModal
+            :isShowTrailerModal="isShowTrailer"
             :url="movie.movie.trailer_url"
-            @closeTrailerModal="isShowTrailerModal = false"
+            @closeTrailerModal="isShowTrailer = false"
           />
         </v-col>
       </v-row>

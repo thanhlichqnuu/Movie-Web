@@ -58,8 +58,8 @@ const routeStatus = computed(() => ({
   isOnPlayerModal: route.name === 'Player'
 }));
 
-watch(isShowSearchModal, (newValue) => {
-  if (!newValue) {
+watch(isShowSearchModal, (newVal) => {
+  if (!newVal) {
     sr.stop();
   }
 });
