@@ -4,9 +4,6 @@ import { watchThrottled } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useI18n } from "vue-i18n";
-import startSoundSrc from '../assets/start-record_effect.mp3';
-import endSoundSrc from '../assets/end-record_effect.mp3';
-import endSpeechSoundSrc from '../assets/result-record_effect.mp3';
 
 const emit = defineEmits(["closeSearchModal"]);
 const { t } = useI18n();
@@ -16,10 +13,6 @@ const keyword = ref("");
 const searchSuggestion = ref([]);
 const isLoading = ref(false);
 const isRecording = ref(false)
-
-const startSound = new Audio(startSoundSrc);
-const endSound = new Audio(endSoundSrc); 
-const endSpeechSound = new Audio(endSpeechSoundSrc);
 
 const handleSearch = async (keyword) => {
   if (!keyword) {
@@ -58,39 +51,9 @@ const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
 const sr = new Recognition()
 
 const handleVoiceSearch = () => {
-  sr.lang = 'vi-VN';
-  sr.continuous = false;
-  sr.interimResults = false;
-
-  sr.onstart = () => {
-    isRecording.value = true;
-    startSound.play()
-  };
-
-  sr.onresult = (e) => {
-    const transcript = e.results[0][0].transcript;
-    keyword.value = transcript;
-    isRecording.value = false;
-  };
-
-  sr.onspeechend = () => {
-    endSpeechSound.play()
-  }
-
-  sr.onend = () => {
-    isRecording.value = false;
-    endSound.play()
-  };
-
-  sr.start()
-}
-
-const toggleMic = () => {
-	if (isRecording.value) {
-		sr.stop()
-	} else {
-		handleVoiceSearch()
-	}
+  recognition.lang = 'en-US';
+  recognition.continuous = false;
+  recognition.interimResults = false;
 }
 </script>
 
@@ -107,7 +70,7 @@ const toggleMic = () => {
       single-line
     >
     <template v-slot:append>
-        <v-btn icon @click="toggleMic">
+        <v-btn icon @click="startVoiceSearch">
           <v-icon color="red" v-if="isRecording">mdi-microphone</v-icon>
           <v-icon v-else>mdi-microphone</v-icon>
         </v-btn>

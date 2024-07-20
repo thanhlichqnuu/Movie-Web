@@ -4,9 +4,6 @@ import { watchThrottled } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useI18n } from "vue-i18n";
-import startSoundSrc from '../assets/start-record_effect.mp3';
-import endSoundSrc from '../assets/end-record_effect.mp3';
-import endSpeechSoundSrc from '../assets/result-record_effect.mp3';
 
 const emit = defineEmits(["closeSearchModal"]);
 const { t } = useI18n();
@@ -16,10 +13,6 @@ const keyword = ref("");
 const searchSuggestion = ref([]);
 const isLoading = ref(false);
 const isRecording = ref(false)
-
-const startSound = new Audio(startSoundSrc);
-const endSound = new Audio(endSoundSrc); 
-const endSpeechSound = new Audio(endSpeechSoundSrc);
 
 const handleSearch = async (keyword) => {
   if (!keyword) {
@@ -54,40 +47,33 @@ const navigateToDetail = (slug) => {
 
 const translateLabel = computed(() => t("keyword"));
 
-const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
-const sr = new Recognition()
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)()
 
 const handleVoiceSearch = () => {
-  sr.lang = 'vi-VN';
-  sr.continuous = false;
-  sr.interimResults = false;
+  recognition.lang = 'vi-VN';
+  recognition.continuous = false;
+  recognition.interimResults = false;
 
-  sr.onstart = () => {
+  recognition.onstart = () => {
     isRecording.value = true;
-    startSound.play()
   };
 
-  sr.onresult = (e) => {
+  recognition.onresult = (e) => {
     const transcript = e.results[0][0].transcript;
     keyword.value = transcript;
     isRecording.value = false;
   };
 
-  sr.onspeechend = () => {
-    endSpeechSound.play()
-  }
-
-  sr.onend = () => {
+  recognition.onend = () => {
     isRecording.value = false;
-    endSound.play()
   };
 
-  sr.start()
+  recognition.start()
 }
 
 const toggleMic = () => {
 	if (isRecording.value) {
-		sr.stop()
+		recognition.stop()
 	} else {
 		handleVoiceSearch()
 	}

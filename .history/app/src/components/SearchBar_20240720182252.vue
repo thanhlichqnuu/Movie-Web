@@ -4,9 +4,6 @@ import { watchThrottled } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useI18n } from "vue-i18n";
-import startSoundSrc from '../assets/start-record_effect.mp3';
-import endSoundSrc from '../assets/end-record_effect.mp3';
-import endSpeechSoundSrc from '../assets/result-record_effect.mp3';
 
 const emit = defineEmits(["closeSearchModal"]);
 const { t } = useI18n();
@@ -16,10 +13,8 @@ const keyword = ref("");
 const searchSuggestion = ref([]);
 const isLoading = ref(false);
 const isRecording = ref(false)
-
-const startSound = new Audio(startSoundSrc);
-const endSound = new Audio(endSoundSrc); 
-const endSpeechSound = new Audio(endSpeechSoundSrc);
+const startSound = new Audio('path/to/start-sound.mp3'); // Replace with your actual start sound file path
+const endSound = new Audio('path/to/end-sound.mp3'); // Replace with your actual end sound file path
 
 const handleSearch = async (keyword) => {
   if (!keyword) {
@@ -64,7 +59,6 @@ const handleVoiceSearch = () => {
 
   sr.onstart = () => {
     isRecording.value = true;
-    startSound.play()
   };
 
   sr.onresult = (e) => {
@@ -73,13 +67,8 @@ const handleVoiceSearch = () => {
     isRecording.value = false;
   };
 
-  sr.onspeechend = () => {
-    endSpeechSound.play()
-  }
-
   sr.onend = () => {
     isRecording.value = false;
-    endSound.play()
   };
 
   sr.start()

@@ -85,13 +85,7 @@ const handleVoiceSearch = () => {
   sr.start()
 }
 
-const toggleMic = () => {
-	if (isRecording.value) {
-		sr.stop()
-	} else {
-		handleVoiceSearch()
-	}
-}
+
 </script>
 
 <template>

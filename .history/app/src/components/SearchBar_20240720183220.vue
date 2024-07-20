@@ -17,6 +17,7 @@ const searchSuggestion = ref([]);
 const isLoading = ref(false);
 const isRecording = ref(false)
 
+
 const startSound = new Audio(startSoundSrc);
 const endSound = new Audio(endSoundSrc); 
 const endSpeechSound = new Audio(endSpeechSoundSrc);

@@ -4,9 +4,6 @@ import { watchThrottled } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useI18n } from "vue-i18n";
-import startSoundSrc from '../assets/start-record_effect.mp3';
-import endSoundSrc from '../assets/end-record_effect.mp3';
-import endSpeechSoundSrc from '../assets/result-record_effect.mp3';
 
 const emit = defineEmits(["closeSearchModal"]);
 const { t } = useI18n();
@@ -15,11 +12,8 @@ const router = useRouter();
 const keyword = ref("");
 const searchSuggestion = ref([]);
 const isLoading = ref(false);
-const isRecording = ref(false)
-
-const startSound = new Audio(startSoundSrc);
-const endSound = new Audio(endSoundSrc); 
-const endSpeechSound = new Audio(endSpeechSoundSrc);
+const isListening = ref(false);
+let recognition;
 
 const handleSearch = async (keyword) => {
   if (!keyword) {
@@ -54,44 +48,38 @@ const navigateToDetail = (slug) => {
 
 const translateLabel = computed(() => t("keyword"));
 
-const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
-const sr = new Recognition()
+if (window.SpeechRecognition || window.webkitSpeechRecognition) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
 
-const handleVoiceSearch = () => {
-  sr.lang = 'vi-VN';
-  sr.continuous = false;
-  sr.interimResults = false;
-
-  sr.onstart = () => {
-    isRecording.value = true;
-    startSound.play()
+  recognition.onresult = (event) => {
+    const speechResult = event.results[0][0].transcript;
+    keyword.value = speechResult;
   };
 
-  sr.onresult = (e) => {
-    const transcript = e.results[0][0].transcript;
-    keyword.value = transcript;
-    isRecording.value = false;
+  recognition.onspeechend = () => {
+    recognition.stop();
+    isListening.value = false;
   };
 
-  sr.onspeechend = () => {
-    endSpeechSound.play()
+  recognition.onerror = (event) => {
+    console.error('Speech recognition error detected: ', event.error);
+    isListening.value = false;
+  };
+}
+
+const toggleVoiceSearch = () => {
+  if (isListening.value) {
+    recognition.stop();
+    isListening.value = false;
+  } else {
+    recognition.start();
+    isListening.value = true;
   }
-
-  sr.onend = () => {
-    isRecording.value = false;
-    endSound.play()
-  };
-
-  sr.start()
-}
-
-const toggleMic = () => {
-	if (isRecording.value) {
-		sr.stop()
-	} else {
-		handleVoiceSearch()
-	}
-}
+};
 </script>
 
 <template>
@@ -105,13 +93,10 @@ const toggleMic = () => {
       variant="solo"
       hide-details
       single-line
-    >
-    <template v-slot:append>
-        <v-btn icon @click="toggleMic">
-          <v-icon color="red" v-if="isRecording">mdi-microphone</v-icon>
-          <v-icon v-else>mdi-microphone</v-icon>
-        </v-btn>
-      </template></v-text-field>
+    ></v-text-field>
+    <v-btn icon @click="toggleVoiceSearch">
+      <v-icon>{{ isListening ? 'mdi-microphone-off' : 'mdi-microphone' }}</v-icon>
+    </v-btn>
     <v-list v-if="searchSuggestion?.length" class="mt-4 rounded max-h-400">
       <v-list-item
         v-for="movie in searchSuggestion"

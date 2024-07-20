@@ -78,19 +78,12 @@ const handleVoiceSearch = () => {
   }
 
   sr.onend = () => {
+    
     isRecording.value = false;
     endSound.play()
   };
 
   sr.start()
-}
-
-const toggleMic = () => {
-	if (isRecording.value) {
-		sr.stop()
-	} else {
-		handleVoiceSearch()
-	}
 }
 </script>
 
@@ -107,7 +100,7 @@ const toggleMic = () => {
       single-line
     >
     <template v-slot:append>
-        <v-btn icon @click="toggleMic">
+        <v-btn icon @click="handleVoiceSearch">
           <v-icon color="red" v-if="isRecording">mdi-microphone</v-icon>
           <v-icon v-else>mdi-microphone</v-icon>
         </v-btn>
