@@ -70,6 +70,7 @@ const handleVoiceSearch = () => {
   sr.onresult = (e) => {
     const transcript = e.results[0][0].transcript;
     keyword.value = transcript;
+    isRecording.value = true
   };
 
   sr.onspeechend = () => {

@@ -70,6 +70,7 @@ const handleVoiceSearch = () => {
   sr.onresult = (e) => {
     const transcript = e.results[0][0].transcript;
     keyword.value = transcript;
+    isRecording.value = false;
   };
 
   sr.onspeechend = () => {
@@ -111,7 +112,7 @@ const toggleMic = () => {
           <v-icon v-else>mdi-microphone</v-icon>
         </v-btn>
       </template></v-text-field>
-    <v-list v-if="searchSuggestion?.length" class="mt-4 rounded max-h-400">
+    <v-list v-if="searchSuggestion.length" class="mt-4 rounded max-h-400">
       <v-list-item
         v-for="movie in searchSuggestion"
         :key="movie._id"
