@@ -13,7 +13,6 @@
     "hls.js": "^1.5.11",
     "pinia": "^2.1.7",
     "register-service-worker": "^1.7.2",
-    "sanitize-html": "^2.13.0",
     "swrv": "^1.0.4",
     "vue": "^3.2.13",
     "vue-axios": "^3.5.2",
