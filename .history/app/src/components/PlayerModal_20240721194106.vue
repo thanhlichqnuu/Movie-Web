@@ -31,15 +31,23 @@ const getMoviePlay = async (slugMovie) => {
       `https://apii.online/apii/phim/${slugMovie}`
     );
     movie.value = data;
+
+    // Reverse the episodes array
     const reversedEpisodes = data.episodes.reverse();
+
+    // Set the initial episodes and server name to the first server in the reversed array
     episodes.value = reversedEpisodes[0].server_data;
     serverNames.value = reversedEpisodes.map((episode) => episode.server_name);
     serverName.value = reversedEpisodes[0].server_name;
+
+    // Select the first episode of the first server in the reversed array
+    await selectEpisode(episodes.value[0]);
   } catch {
     const { toast } = await import("vue3-toastify");
     toast.error("Episode is currently unavailable!");
   }
 };
+
 
 const currentEpisode = computed(
   () =>

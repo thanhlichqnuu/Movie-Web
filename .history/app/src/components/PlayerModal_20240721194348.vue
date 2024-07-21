@@ -31,10 +31,9 @@ const getMoviePlay = async (slugMovie) => {
       `https://apii.online/apii/phim/${slugMovie}`
     );
     movie.value = data;
-    const reversedEpisodes = data.episodes.reverse();
-    episodes.value = reversedEpisodes[0].server_data;
-    serverNames.value = reversedEpisodes.map((episode) => episode.server_name);
-    serverName.value = reversedEpisodes[0].server_name;
+    episodes.value = data.episodes[0].server_data;
+    serverNames.value = data.episodes.map((episode) => episode.server_name);
+    serverName.value = data.episodes[0].server_name;
   } catch {
     const { toast } = await import("vue3-toastify");
     toast.error("Episode is currently unavailable!");
@@ -186,9 +185,9 @@ onUnmounted(() => {
     </v-row>
 
     <v-row>
-      <v-col :cols="isSmallTabletAndMobile ? 12 : 7" class="mt-12">
-        <div class="mb-4">
-          <v-banner bg-color="#d43939" :text="$t('note')">
+      <v-col :cols="isSmallTabletAndMobile ? 12 : 7" class="mt-10">
+        <div>
+          <v-banner zzzzzzztext="Server [NC] VIETSUB #1 hay gặp lỗi! Vui lòng đổi sang server khác để có trải nghiệm tốt nhất">
       </v-banner>
         </div>
         <div class="mb-3 d-flex flex-wrap">

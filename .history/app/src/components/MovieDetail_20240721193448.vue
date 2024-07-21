@@ -56,11 +56,10 @@ const episodeAvailable = computed(
 );
 
 const loadMovie = () => {
-  const reversedEpisodes = movie.value.episodes.reverse();
   router.push({
     name: "Player",
     params: {
-      slugEpisode: reversedEpisodes[0].server_data[0].slug
+      slugEpisode: movie.value.episodes[0].server_data[0].slug,
     },
   });
 };

@@ -33,8 +33,8 @@ const getMoviePlay = async (slugMovie) => {
     movie.value = data;
     const reversedEpisodes = data.episodes.reverse();
     episodes.value = reversedEpisodes[0].server_data;
-    serverNames.value = reversedEpisodes.map((episode) => episode.server_name);
-    serverName.value = reversedEpisodes[0].server_name;
+    serverNames.value = data.episodes.map((episode) => episode.server_name);
+    serverName.value = data.episodes[0].server_name;
   } catch {
     const { toast } = await import("vue3-toastify");
     toast.error("Episode is currently unavailable!");

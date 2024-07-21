@@ -60,7 +60,7 @@ const loadMovie = () => {
   router.push({
     name: "Player",
     params: {
-      slugEpisode: reversedEpisodes[0].server_data[0].slug
+      slugEpisode: reversedEpisodes[0].server_data[0].slug;
     },
   });
 };

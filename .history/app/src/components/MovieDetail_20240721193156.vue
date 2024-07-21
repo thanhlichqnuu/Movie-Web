@@ -52,15 +52,14 @@ const trailerAvailable = computed(() => movie.value.movie.trailer_url);
 const loadTrailer = () => (isShowTrailerModal.value = true);
 
 const episodeAvailable = computed(
-  () => movie.value.episodes?.[0]?.server_data?.[0]?.slug
+  () => movie.value.episodes?.[0]?.server_data?.[1]?.slug
 );
 
 const loadMovie = () => {
-  const reversedEpisodes = movie.value.episodes.reverse();
   router.push({
     name: "Player",
     params: {
-      slugEpisode: reversedEpisodes[0].server_data[0].slug
+      slugEpisode: movie.value.episodes[0].server_data[0].slug,
     },
   });
 };
