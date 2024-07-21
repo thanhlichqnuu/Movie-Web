@@ -11,7 +11,7 @@ const movie = ref(null);
 const isShowTrailerModal = ref(false);
 const { width: windowWidth } = useWindowSize();
 const isSmallTabletAndMobile = computed(() => windowWidth.value < 768);
-const reversedEpisodes = ref(null)
+const reversedEpisodes;
 
 const TrailerModal = defineAsyncComponent(() =>
   import("@/components/TrailerModal.vue")
@@ -24,7 +24,7 @@ const fetcher = async (url) => {
       /<\/?[^>]+(>|$)|&quot;|&#39;|&nbsp;/g,
       ""
     );
-    reversedEpisodes.value = data.episodes.reverse();
+    reversedEpisodes = data.episodes.reverse();
     return data;
   } catch {
     const { toast } = await import("vue3-toastify");
@@ -61,7 +61,7 @@ const loadMovie = () => {
   router.push({
     name: "Player",
     params: {
-      slugEpisode: reversedEpisodes.value[0].server_data[0].slug
+      slugEpisode: reversedEpisodes[0].server_data[0].slug
     },
   });
 };
