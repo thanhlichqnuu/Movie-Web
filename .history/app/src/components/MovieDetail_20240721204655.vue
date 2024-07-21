@@ -253,7 +253,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.time ? movie.movie.time : "Đang cập nhật"
+                      movie.movie.time
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>
@@ -335,7 +335,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.quality ? movie.movie.quality : "Đang cập nhật"
+                      movie.movie.quality
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>

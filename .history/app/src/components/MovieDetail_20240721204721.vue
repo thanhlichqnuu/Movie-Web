@@ -335,7 +335,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.quality ? movie.movie.quality : "Đang cập nhật"
+                      movie.movie.episode_current ? movie.movie.episode_current : "Đang cập nhật"
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>

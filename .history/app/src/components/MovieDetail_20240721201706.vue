@@ -17,6 +17,10 @@ const TrailerModal = defineAsyncComponent(() =>
   import("@/components/TrailerModal.vue")
 );
 
+const getMovieDetail = async (slug) => {
+  
+}
+
 const fetcher = async (url) => {
   try {
     const { data } = await axios.get(url);
@@ -225,7 +229,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.episode_current ? movie.movie.episode_current : "Đang cập nhật"
+                      movie.movie.episode_current
                     }}</v-list-item-subtitle>
                   </v-col>
                 </v-row>
@@ -239,7 +243,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.episode_total ? movie.movie.episode_total : "Đang cập nhật"
+                      movie.movie.episode_total
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>
@@ -253,7 +257,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.time ? movie.movie.time : "Đang cập nhật"
+                      movie.movie.time
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>
@@ -335,7 +339,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.quality ? movie.movie.quality : "Đang cập nhật"
+                      movie.movie.quality
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>
