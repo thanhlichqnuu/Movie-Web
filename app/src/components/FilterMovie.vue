@@ -21,7 +21,7 @@ const applyFilter = () => {
   query.page = 1;
   router.push({ query });
   emit("closeFilterModal");
-};
+}
 
 const clearFilter = () => {
   year.value = "";

@@ -161,8 +161,8 @@ onMounted(() => {
     #fff800 100%
   );
   background-clip: border-box;
-  background-size: 200% auto;
   background-clip: text;
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 2s linear infinite;
