@@ -1,36 +1,30 @@
 <script setup>
-import { useFacebookStore } from "@/stores/useFacebookStore";
+import { computed } from "vue";
 import { useRoute } from "vue-router";
 
-const facebookStore = useFacebookStore();
-const route = useRoute()
+const route = useRoute();
 
-facebookStore.initFacebookPlugin();
+const url = computed(() => 
+  `https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fmotphimmoi.com%2F${route.params.slugMovie}&width=450&layout&action&size&share=true&height=35&appId=973607627550804`
+);
+
 </script>
 
 <template>
   <v-container>
-    <div>
-      <h3 class="d-flex justify-start">Plugin Facebook</h3>
-      <div class="line" />
-    </div>
-    <div style="width: 100%; background-color: white" class="pt-2">
-      <div
-        class="fb-like"
-        :data-href="`https://motphimmoi.com/${route.params.slugMovie}`"
-        data-width=""
-        data-layout="button_count"
-        data-action="like"
-        data-size="small"
-        data-share="true"
-      ></div>
+    <div class=" ml-9 mt-5" >
+      <iframe 
+        :src="url" 
+        width="450" 
+        height="35" 
+        style="border:none;overflow:hidden;" 
+        scrolling="no" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      ></iframe>
     </div>
   </v-container>
 </template>
 
-<style scoped>
-.line {
-  border: 1px solid #b5e745;
-  width: 100%;
-}
-</style>
+

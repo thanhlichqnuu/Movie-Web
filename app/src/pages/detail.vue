@@ -17,7 +17,7 @@ const route = useRoute();
       <v-container>
         <breadcrumb />
         <v-row>
-          <v-col cols="12" class="mt-n3 mb-n2">
+          <v-col cols="12" class="mt-n8 mb-n9 ml-n9">
             <facebook-like />
           </v-col>
         </v-row>

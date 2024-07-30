@@ -90,7 +90,10 @@ watch(
           />
 
           <template v-if="!isSmallTabletAndMobile">
+            
+          
             <v-col cols="6" sm="4" class="d-flex justify-center align-center">
+              
               <v-img :src="movie.movie.thumb_url" height="70%" />
             </v-col>
             <v-col
