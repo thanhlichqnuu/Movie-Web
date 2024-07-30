@@ -22,7 +22,7 @@ const route = useRoute();
           </template>
           <template v-slot:fbdiv>
             <facebook-comments
-              :href="`https://movie-web-two-jade.vercel.app/${route.params.slugMovie}`"
+              :href="`https://motphimmoi.com/${route.params.slugMovie}`"
             />
           </template>
         </player-modal>

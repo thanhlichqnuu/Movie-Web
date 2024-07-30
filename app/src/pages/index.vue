@@ -15,7 +15,7 @@ import FacebookComments from "@/components/FacebookComments.vue";
       <section-movies>
         <template v-slot:sidebar>
           <newly-movies />
-          <facebook-comments class="mt-4" href="https://movie-web-two-jade.vercel.app" />
+          <facebook-comments class="mt-4" href="https://motphimmoi.com/" />
         </template>
       </section-movies>
     </v-main>

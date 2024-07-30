@@ -16,18 +16,16 @@ const route = useRoute();
     <v-main>
       <v-container>
         <breadcrumb />
-        <v-row >
+        <v-row>
           <v-col cols="12" class="mt-n3 mb-n2">
-            <facebook-like
-          :href="`https://movie-web-two-jade.vercel.app/${route.params.slugMovie}`"
-        />
+            <facebook-like />
           </v-col>
         </v-row>
        
         <movie-detail>
           <template v-slot:fbdiv>
             <facebook-comments
-              :href="`https://movie-web-two-jade.vercel.app/${route.params.slugMovie}`"
+              :href="`https://motphimmoi.com/${route.params.slugMovie}`"
             />
           </template>
         </movie-detail>

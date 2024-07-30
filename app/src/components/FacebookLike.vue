@@ -1,13 +1,9 @@
 <script setup>
 import { useFacebookStore } from "@/stores/useFacebookStore";
+import { useRoute } from "vue-router";
 
 const facebookStore = useFacebookStore();
-const props = defineProps({
-  href: {
-    type: String,
-    required: true,
-  },
-});
+const route = useRoute()
 
 facebookStore.initFacebookPlugin();
 </script>
@@ -21,7 +17,7 @@ facebookStore.initFacebookPlugin();
     <div style="width: 100%; background-color: white" class="pt-2">
       <div
         class="fb-like"
-        :data-href="href"
+        :data-href="`https://motphimmoi.com/${route.params.slugMovie}`"
         data-width=""
         data-layout="button_count"
         data-action="like"
