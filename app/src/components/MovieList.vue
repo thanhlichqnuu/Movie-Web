@@ -26,7 +26,7 @@ const isMobile = computed(() => windowWidth.value < 640);
 
 <template>
   <v-main>
-    <v-row class="d-flex justify-start align-center" v-if="movies">
+    <v-row class="d-flex justify-start align-center">
       <v-col
         :cols="isMobile ? 6 : 12"
         :md="isMobile ? null : 3"
@@ -37,14 +37,6 @@ const isMobile = computed(() => windowWidth.value < 640);
         <movie-card :movie="movie" />
       </v-col>
     </v-row>
-
-    <v-row v-else>
-      <v-progress-circular
-        class="animation_loading"
-        color="primary"
-        indeterminate
-      />
-    </v-row>
     <v-pagination
       :modelValue="currentPage"
       :length="totalPages"
@@ -53,11 +45,4 @@ const isMobile = computed(() => windowWidth.value < 640);
   </v-main>
 </template>
 
-<style scoped>
-.animation_loading {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-</style>
+

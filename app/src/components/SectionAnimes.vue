@@ -15,6 +15,7 @@ const route = useRoute();
 const router = useRouter();
 const { width: windowWidth } = useWindowSize();
 const isTabletAndMobile = computed(() => windowWidth.value < 1024);
+const isLoading = ref(false)
 
 const currentPage = ref(Number(route.query.page) || 1);
 const movies = ref([]);
@@ -30,6 +31,7 @@ const urls = () => {
 };
 
 const fetcher = async (url) => {
+  isLoading.value = true;
   try {
     const { data } = await axios.get(url);
     return data;
@@ -37,13 +39,15 @@ const fetcher = async (url) => {
     const { toast } = await import("vue3-toastify");
     toast.error("Anime list is currently unavailable!");
   }
+  finally {
+    isLoading.value  = false;
+  }
 };
 
 const { data } = useSWRV(urls, fetcher, {
   refreshInterval: 3600000,
   revalidateOnFocus: false,
-  errorRetryCount: 1,
-  errorRetryInterval: 2000,
+
 });
 
 const listLabel = computed(() => t("list"));
@@ -95,7 +99,25 @@ watch(data, (newData) => {
         <span class="filter-text mt-14 mb-n2" v-if="filterText">{{
           filterText
         }}</span>
+        <v-row v-if="isLoading" class="mt-9 d-flex justify-start align-center ">
+          <v-col
+            :cols="isMobile ? 6 : 12"
+            :md="isMobile ? null : 3"
+            :sm="isMobile ? null : 4"
+            v-for="(number, index) in 24"
+            :key="index"
+          >
+          <v-skeleton-loader
+            elevation="2"
+            max-width="100%"
+            type="image, heading, subtitle"
+          >
+          </v-skeleton-loader>
+          </v-col>
+        </v-row>
+         
         <movie-list
+          v-else
           :movies="movies"
           :totalPages="totalPages"
           :currentPage="currentPage"

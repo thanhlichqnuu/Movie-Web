@@ -34,8 +34,6 @@ const fetcher = async (url) => {
 const { data } = useSWRV(movieStore.apiUrls[props.apiKey], fetcher, {
   refreshInterval: 3600000,
   revalidateOnFocus: false,
-  errorRetryCount: 1,
-  errorRetryInterval: 2000,
 });
 
 const navigateToDetail = (slug) =>

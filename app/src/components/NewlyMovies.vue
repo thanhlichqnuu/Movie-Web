@@ -47,8 +47,6 @@ const { data } = useSWRV(
     refreshInterval: 3600000,
     revalidateOnFocus: false,
     revalidateDebounce: 500,
-    errorRetryCount: 1,
-    errorRetryInterval: 2000,
   }
 );
 
