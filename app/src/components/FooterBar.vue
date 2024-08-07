@@ -9,7 +9,7 @@ const currentYear = new Date().getFullYear();
         {{ $t('Contact') }}: thanhlich2103gg@gmail.com
       </v-card-text>
       <v-card-text class="text-center w-100 py-2">
-        © Copyright {{ currentYear }} MotPhimMoi.com. All rights reserved.
+        © Copyright {{ currentYear }} Ghienphim.fun. All rights reserved.
       </v-card-text>
     </v-footer>
   </div>

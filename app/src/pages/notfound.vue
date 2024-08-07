@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onBeforeUnmount } from "vue";
+import { onBeforeUnmount } from "vue";
 import { useTheme } from "vuetify";
 import { useRouter } from "vue-router";
 

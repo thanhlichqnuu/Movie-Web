@@ -49,8 +49,8 @@ watch(
   { immediate: true }
 );
 
-watch(currentPage, (newPage) => {
-  router.push({ query: { page: newPage } });
+watch(currentPage, async (newPage) => {
+  await router.push({ query: { page: newPage } });
   window.scrollTo({ top: 0, behavior: "smooth" }); 
 });
 
@@ -68,11 +68,11 @@ watch(data, (newData) => {
       <v-col :cols="isTabletAndMobile ? 12 : 8">
         <v-row v-if="isLoading" class="mt-9 d-flex justify-start align-center ">
           <v-col
-            :cols="isMobile ? 6 : 12"
-            :md="isMobile ? null : 3"
-            :sm="isMobile ? null : 4"
-            v-for="(number, index) in 24"
-            :key="index"
+          :cols="isTabletAndMobile ? 6 : 12"
+            :md="isTabletAndMobile ? null : 3"
+            :sm="isTabletAndMobile ? null : 4"
+        
+            v-for="n in 24"
           >
           <v-skeleton-loader
             elevation="2"

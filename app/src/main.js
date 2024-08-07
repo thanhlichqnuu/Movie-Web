@@ -12,7 +12,7 @@ import "@mdi/font/css/materialdesignicons.css";
 import "vuetify/styles";
 import "./global.css";
 import { createPinia } from "pinia";
-import { createI18n } from "vue-i18n";
+import { createI18n } from 'petite-vue-i18n'
 import VI from "./locale/vi.json";
 import EN from "./locale/en.json";
 import { useLocaleStore } from "./stores/useLocaleStore";

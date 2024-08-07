@@ -1,9 +1,9 @@
 <script setup>
-import { ref, computed } from "vue";
-import { watchThrottled } from "@vueuse/core";
+import { ref, computed, watch } from "vue";
+import { useDebounceFn } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import axios from "axios";
-import { useI18n } from "vue-i18n";
+import { useI18n } from "petite-vue-i18n";
 import startSoundSrc from '../assets/start-record_effect.mp3';
 import endSoundSrc from '../assets/end-record_effect.mp3';
 import endSpeechSoundSrc from '../assets/result-record_effect.mp3';
@@ -41,12 +41,13 @@ const handleSearch = async (keyword) => {
   }
 };
 
-watchThrottled(
+const handleSearchDebounce = useDebounceFn(handleSearch, 300);
+
+watch(
   keyword,
   (newKeyword) => {
-    handleSearch(newKeyword);
-  },
-  { throttle: 300 }
+    handleSearchDebounce(newKeyword);
+  }
 );
 
 const navigateToDetail = (slug) => {
@@ -57,7 +58,7 @@ const navigateToDetail = (slug) => {
 const defaultLabel = computed(() => t("keyword"));
 const listeningLabel = computed(() => t("listening"));
 
-const handleVoiceSearch = () => {
+const handleVoiceSearch = async () => {
   sr.lang = 'vi-VN';
   sr.continuous = false;
   sr.interimResults = true;

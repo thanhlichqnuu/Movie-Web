@@ -44,11 +44,14 @@ watch(data, (newData) => {
     movies.value = newData.items.slice(0, 5);
   }
 });
+const isMobile = /iPhone|Android|Windows Phone|BlackBerry/i.test(
+    navigator.userAgent
+  );
 </script>
 
 <template>
   <v-carousel
-    v-if="!isSmallTabletAndMobile"
+    v-if="!isSmallTabletAndMobile && !isMobile"
     cycle
     hide-delimiters
     interval="5000"

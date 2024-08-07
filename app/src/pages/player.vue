@@ -22,7 +22,7 @@ const route = useRoute();
           </template>
           <template v-slot:fbdiv>
             <facebook-comments
-              :href="`https://motphimmoi.com/${route.params.slugMovie}`"
+              :href="`https://ghienphim.fun/${route.params.slugMovie}`"
             />
           </template>
         </player-modal>

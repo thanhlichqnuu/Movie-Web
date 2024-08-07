@@ -5,7 +5,7 @@
   "status": "Trạng thái:",
   "episodes": "Số tập:",
   "time": "Thời lượng:",
-  "genre": "Thể loại:",
+  "category": "Thể loại:",
   "director": "Đạo diễn:",
   "country": "Quốc gia:",
   "quality": "Chất lượng:",
@@ -22,7 +22,7 @@
   "filter": "Bộ lọc",
   "releaseYearFilter": "Năm phát hành",
   "statusFilter": "Trạng thái",
-  "genreFilter": "Thể loại",
+  "categoryFilter": "Thể loại",
   "countryFilter": "Quốc gia",
   "all": "Tất cả",
   "trailer": "Trailer",
@@ -144,5 +144,6 @@
   "clear": "Xóa",
   "listening": "Đang nghe...",
   "list": "Danh sách",
-  "note": "Server [NC] VIETSUB #1 hay gặp lỗi! Vui lòng đổi sang server khác để có trải nghiệm tốt nhất."
+  "note": "Server [NC] VIETSUB #1 hay gặp lỗi! Vui lòng đổi sang server khác để có trải nghiệm tốt nhất.",
+  "shareFb": "Chia sẻ"
 }

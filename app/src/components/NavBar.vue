@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch, defineAsyncComponent } from "vue";
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { useWindowSize } from "@vueuse/core";
 import { useTheme } from "vuetify";
 import { useStateThemeStore } from "@/stores/useStateThemeStore";
@@ -8,6 +8,7 @@ import { useLocaleStore } from "@/stores/useLocaleStore";
 import sr from "@/util/speechRecognition";
 
 const route = useRoute()
+const router = useRouter()
 const themeStore = useStateThemeStore();
 const localeStore = useLocaleStore();
 const theme = useTheme();
@@ -62,6 +63,10 @@ watch(isShowSearchModal, (newValue) => {
     sr.stop();
   }
 });
+
+const navigateTo = (routeName) => {
+  router.push({ name: routeName });
+};
 </script>
 
 <template>
@@ -69,9 +74,7 @@ watch(isShowSearchModal, (newValue) => {
     <v-app-bar
       class="nav"
       density="compact"
-      style="position: absolute"
-      color="transparent"
-      app
+     
     >
       <v-app-bar-nav-icon
         v-if="isTabletAndMobile"
@@ -122,43 +125,30 @@ watch(isShowSearchModal, (newValue) => {
       <v-btn v-show="localeStore.locale === 'VI'" @click="changeLocale('EN')"><img class="mr-1" src="../assets/flag_vi.png" alt="flag" width="auto" height="20px" />VI</v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="isShowDotMenu" app temporary>
-      <router-link
-        :to="{ name: 'Anime' }"
-        class="no-router-link_color text-decoration-none"
-      >
-        <v-list-item>
+    <v-navigation-drawer v-model="isShowDotMenu" temporary>
+      <v-list>
+        <v-list-item @click="navigateTo('Anime')">
           <v-list-item-title class="text-button">ANIME</v-list-item-title>
         </v-list-item>
-      </router-link>
-      <router-link
-        :to="{ name: 'Movie' }"
-        class="no-router-link_color text-decoration-none"
-      >
-        <v-list-item>
+
+        <v-list-item @click="navigateTo('Movie')">
           <v-list-item-title class="text-button">{{ $t('singleMovie') }}</v-list-item-title>
         </v-list-item>
-      </router-link>
-      <router-link
-        :to="{ name: 'Series' }"
-        class="no-router-link_color text-decoration-none"
-      >
-        <v-list-item>
+
+        <v-list-item @click="navigateTo('Series')">
           <v-list-item-title class="text-button">{{ $t('seriesMovie') }}</v-list-item-title>
         </v-list-item>
-      </router-link>
-      <router-link
-        :to="{ name: 'TV Show' }"
-        class="no-router-link_color text-decoration-none"
-      >
-        <v-list-item>
+
+        <v-list-item @click="navigateTo('TV Show')">
           <v-list-item-title class="text-button">TV SHOW</v-list-item-title>
         </v-list-item>
-      </router-link>
-      <v-list-item v-if="!routeStatus.isOnSectionMovie && !routeStatus.isOnMovieDetail && !routeStatus.isOnPlayerModal" @click="openFilterModal">
-        <v-list-item-title class="text-button">{{ $t('filter') }}</v-list-item-title>
-      </v-list-item>
+
+        <v-list-item v-if="!routeStatus.isOnSectionMovie && !routeStatus.isOnMovieDetail && !routeStatus.isOnPlayerModal" @click="openFilterModal">
+          <v-list-item-title class="text-button">{{ $t('filter') }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
+
 
     <v-dialog v-model="isShowSearchModal" max-width="750px" opacity="0.1">
       <v-card>

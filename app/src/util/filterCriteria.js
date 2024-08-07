@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { useI18n } from "vue-i18n";
+import { useI18n } from "petite-vue-i18n";
 
 export function useFilterCriteria() {
   const { t } = useI18n();
@@ -100,7 +100,7 @@ export function useFilterCriteria() {
     { value: "belarus", text: t("belarus") },
   ]);
 
-  const genreOptions = computed(() => [
+  const categoryOptions = computed(() => [
     { value: "", text: t("all") },
     { value: "tinh-cam", text: t("romance") },
     { value: "hai-huoc", text: t("comedy") },
@@ -133,30 +133,20 @@ export function useFilterCriteria() {
     { value: "khoa-hoc-vien-tuong", text: t("sciFi") },
   ]);
 
-  const statusMap = computed(() =>
-    Object.fromEntries(
-      statusOptions.value.map((option) => [option.value, option.text])
-    )
-  );
+  const generateMap = (options) => {
+    return computed(() => Object.fromEntries(options.value.map((option) => [option.value, option.text])));
+  };
 
-  const countryMap = computed(() =>
-    Object.fromEntries(
-      countryOptions.value.map((option) => [option.value, option.text])
-    )
-  );
-
-  const genreMap = computed(() =>
-    Object.fromEntries(
-      genreOptions.value.map((option) => [option.value, option.text])
-    )
-  );
+  const statusMap = generateMap(statusOptions);
+  const countryMap = generateMap(countryOptions);
+  const categoryMap = generateMap(categoryOptions);
 
   return {
     statusOptions,
     countryOptions,
-    genreOptions,
+    categoryOptions,
     statusMap,
     countryMap,
-    genreMap,
+    categoryMap
   };
 }

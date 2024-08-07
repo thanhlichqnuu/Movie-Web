@@ -77,7 +77,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  document.title = to.meta?.title ?? 'Mọt Phim Mới - motphimmoi.com'
+  document.title = to.meta?.title ?? 'Ghiền Phim - ghienphim.fun'
 })
 
 export default router;

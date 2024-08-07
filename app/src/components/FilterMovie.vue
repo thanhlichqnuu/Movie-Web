@@ -4,31 +4,34 @@ import { useRouter } from "vue-router";
 import { useFilterCriteria } from "@/util/filterCriteria.js";
 
 const router = useRouter();
-const { statusOptions, countryOptions, genreOptions } = useFilterCriteria();
+const { statusOptions, countryOptions, categoryOptions } = useFilterCriteria();
 
-const year = ref("");
-const status = ref("");
-const country = ref("");
-const genre = ref("");
+const filters = ref({
+  year: "",
+  status: "",
+  country: "",
+  category: ""
+});
+
 const emit = defineEmits(["closeFilterModal"]);
 
 const applyFilter = () => {
-  const query = {};
-  if (year.value) query.year = year.value;
-  if (status.value) query.status = status.value;
-  if (country.value) query.country = country.value;
-  if (genre.value) query.category = genre.value;
-  query.page = 1;
+  const query = { ...filters.value, page: 1 };
+  
+  Object.keys(query).forEach(key => {
+    if (query[key] === "") {
+      delete query[key];
+    }
+  });
+
   router.push({ query });
   emit("closeFilterModal");
 }
 
 const clearFilter = () => {
-  year.value = "";
-  status.value = "";
-  country.value = "";
-  genre.value = "";
+  filters.value = { year: "", status: "", country: "", category: "" };
   router.push({ query: { page: 1 } });
+  emit("closeFilterModal");
 };
 </script>
 
@@ -41,14 +44,14 @@ const clearFilter = () => {
 
     <v-form @submit.prevent="applyFilter">
       <v-text-field
-        v-model="year"
+        v-model="filters.year"
         :label="$t('releaseYearFilter')"
         type="number"
         variant="underlined"
         single-line
       ></v-text-field>
       <v-select
-        v-model="status"
+        v-model="filters.status"
         :items="statusOptions"
         :label="$t('statusFilter')"
         item-value="value"
@@ -56,15 +59,15 @@ const clearFilter = () => {
         density="comfortable"
       ></v-select>
       <v-select
-        v-model="genre"
-        :items="genreOptions"
-        :label="$t('genreFilter')"
+        v-model="filters.category"
+        :items="categoryOptions"
+        :label="$t('categoryFilter')"
         item-value="value"
         item-title="text"
         density="comfortable"
       ></v-select>
       <v-select
-        v-model="country"
+        v-model="filters.country"
         :items="countryOptions"
         :label="$t('countryFilter')"
         item-value="value"
@@ -79,6 +82,7 @@ const clearFilter = () => {
     </v-form>
   </v-main>
 </template>
+
 <style scoped>
 .line {
   border: 1px solid #b5e745;

@@ -13,13 +13,16 @@ const { width: windowWidth } = useWindowSize();
 const isSmallTabletAndMobile = computed(() => windowWidth.value < 768);
 const reversedEpisodes = ref(null)
 
+
+const emit = defineEmits(["movieLoaded"]);
+
 const TrailerModal = defineAsyncComponent(() =>
   import("@/components/TrailerModal.vue")
 );
 
 const fetcher = async (url) => {
   try {
-    const { data } = await axios.get(url);
+    const { data } = await axios.get(url)
     data.movie.content = data.movie.content.replace(
       /<\/?[^>]+(>|$)|&quot;|&#39;|&nbsp;/g,
       ""
@@ -37,17 +40,19 @@ const { data } = useSWRV(
   fetcher,
   {
     refreshInterval: 3600000,
-    revalidateOnFocus: false,
-    errorRetryCount: 1,
-    errorRetryInterval: 2000,
+    revalidateOnFocus: false
   }
 );
 
 watch(data, (newMovie) => {
   if (newMovie) {
     movie.value = newMovie;
+    emit("movieLoaded")
   }
 });
+
+
+
 
 const trailerAvailable = computed(() => movie.value.movie.trailer_url);
 
@@ -66,6 +71,10 @@ const loadMovie = () => {
   });
 };
 
+watch(route, () => {
+  movie.value = null; 
+});
+
 watch(
   movie,
   (newMovie) => {
@@ -75,12 +84,14 @@ watch(
   },
   { immediate: true }
 );
+
 </script>
 
 <template>
   <v-container>
     <v-card v-if="movie">
       <v-row>
+       
         <v-col cols="12" class="background-container d-flex">
           <v-img
             :src="movie.movie.poster_url"
@@ -88,7 +99,7 @@ watch(
             cover
             position="center"
           />
-
+         
           <template v-if="!isSmallTabletAndMobile">
             
           
@@ -195,15 +206,17 @@ watch(
                       $t("newEpisode")
                     }}</v-list-item-title>
                   </v-col>
-                  <v-col
+                  <div
                     v-for="episode in reversedEpisodes[0].server_data
                       .slice(-3)
                       .reverse()"
                     :key="episode.slug"
-                    cols="2"
-                    class="d-flex"
+                   class="d-flex"
+                    
                   >
+                  
                     <v-btn
+                    class="ml-3"
                       color="grey-darken-2"
                       @click="
                         router.push({
@@ -216,7 +229,9 @@ watch(
                       size="small"
                       >{{ episode.name }}</v-btn
                     >
-                  </v-col>
+                 
+                    
+                  </div>
                 </v-row>
               </v-list-item>
               <v-list-item>
@@ -265,7 +280,7 @@ watch(
                 <v-row align="center">
                   <v-col cols="4" class="d-flex justify-end">
                     <v-list-item-title class="text_size">{{
-                      $t("genre")
+                      $t("category")
                     }}</v-list-item-title>
                   </v-col>
                   <v-col cols="8" class="d-flex">
@@ -274,7 +289,7 @@ watch(
                         v-for="(category, index) in movie.movie.category"
                         :key="index"
                       >
-                        {{ category.name
+                        {{ category.name ? category.name : "Đang cập nhật"
                         }}<span v-if="index < movie.movie.category.length - 1"
                           >,
                         </span>
@@ -320,7 +335,7 @@ watch(
                         v-for="(country, index) in movie.movie.country"
                         :key="index"
                       >
-                        {{ country.name
+                        {{ country.name ? country.name : "Đang cập nhật"
                         }}<span v-if="index < movie.movie.country.length - 1"
                           >,
                         </span>
@@ -352,7 +367,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.year
+                      movie.movie.year ? movie.movie.year : "Đang cập nhật"
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>
@@ -366,7 +381,7 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.lang
+                      movie.movie.lang ? movie.movie.lang : "Đang cập nhật"
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>
@@ -426,4 +441,5 @@ watch(
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 </style>

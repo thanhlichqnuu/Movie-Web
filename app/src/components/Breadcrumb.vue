@@ -2,7 +2,7 @@
 import { computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
-import { useI18n } from "vue-i18n";
+import { useI18n } from "petite-vue-i18n";
 import { useLocaleStore } from "@/stores/useLocaleStore";
 
 const localeStore = useLocaleStore();
@@ -45,16 +45,15 @@ const breadcrumbs = computed(() => {
 
       if (matchedRoute.name === "Detail" && route.params.slugMovie) {
         text =
-          localeStore.locale === "VI" ? movieName.value : movieOriginName.value;
+          localeStore.locale === "VI" ? movieName.value : movieOriginName.value || movieName.value
       } else if (matchedRoute.name === "Player") {
         if (route.params.slugEpisode) {
           return [
             {
-              text:
-                localeStore.locale === "VI"
-                  ? movieName.value
-                  : movieOriginName.value,
-              to: `/${route.params.slugMovie}`,
+             text: localeStore.locale === "VI"
+  ? movieName.value : movieOriginName.value || movieName.value,
+to: `/${route.params.slugMovie}`,
+
             },
             {
               text: route.params.slugEpisode,

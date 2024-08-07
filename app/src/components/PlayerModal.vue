@@ -99,6 +99,9 @@ const setupPlayer = async () => {
     pip: !isMobile,
     fullscreenWeb: !isMobile,
     fullscreen: true,
+    icons: {
+        state: '',
+    },
     controls: [
       {
         position: "right",
@@ -155,7 +158,7 @@ const handleOrientationChange = () => {
 
 onMounted(() => {
   getMoviePlay(route.params.slugMovie);
-
+  window.scrollTo({ top: 0, behavior: "instant" });
   handleOrientationChange();
   window.matchMedia("(orientation: landscape)").addEventListener("change", handleOrientationChange);
 });
@@ -172,7 +175,7 @@ onUnmounted(() => {
         <div class="w-100">
           <div ref="videoPlayer" :class="[
               isMobile ? 'video-player_mobile' : 'video-player_pc',
-              isLandscapeMobile ? 'video-player_landscape_mobile' : ''
+              isLandscapeMobile ? 'video-player_pc' : ''
             ]" ></div>
           <div v-if="!currentEpisode">
             <v-progress-circular
@@ -245,10 +248,5 @@ onUnmounted(() => {
 .video-player_pc {
   width: 100%;
   height: 75vh;
-}
-
-.video-player_landscape_mobile {
-  width: 100%;
-  height: 90vh;
 }
 </style>

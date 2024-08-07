@@ -15,7 +15,7 @@ import FacebookComments from "@/components/FacebookComments.vue";
       <section-animes>
         <template v-slot:sidebar>
           <newly-movies />
-          <facebook-comments class="mt-4" href="https://motphimmoi.com/" />
+          <facebook-comments class="mt-4" href="https://ghienphim.fun" />
         </template>
       </section-animes>
     </v-main>

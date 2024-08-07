@@ -5,7 +5,7 @@
   "status": "Status:",
   "episodes": "Episodes:",
   "time": "Time:",
-  "genre": "Genre:",
+  "category": "Genre:",
   "director": "Director:",
   "country": "Country:",
   "quality": "Quality:",
@@ -22,7 +22,7 @@
   "filter": "Filter",
   "releaseYearFilter": "Release Year",
   "statusFilter": "Status",
-  "genreFilter": "Genre",
+  "categoryFilter": "Genre",
   "countryFilter": "Country",
   "all": "All",
   "trailer": "Trailer",
@@ -144,5 +144,6 @@
   "clear": "Clear",
    "listening": "Listening...",
    "list": "List",
-   "note": "Server [NC] VIETSUB #1 is frequently encountering issues! Please switch to a different server for the best experience."
+   "note": "Server [NC] VIETSUB #1 is frequently encountering issues! Please switch to a different server for the best experience.",
+   "shareFb": "Share"
 }

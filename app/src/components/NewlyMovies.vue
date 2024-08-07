@@ -2,7 +2,7 @@
 import { ref, computed, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
-import { useI18n } from "vue-i18n";
+import { useI18n } from "petite-vue-i18n";
 import { useStateThemeStore } from "@/stores/useStateThemeStore";
 import useSWRV from "swrv";
 
