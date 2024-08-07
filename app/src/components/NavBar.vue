@@ -83,7 +83,7 @@ const navigateTo = (routeName) => {
       />
 
       <router-link :to="{ name: 'Home' }" class="ml-3">
-        <img src="../assets/logo.png" alt="logo" width="100px" height="auto" class="mt-1" />
+        <img src="../assets/logo.png" alt="logo" width="55px" height="auto" class="mt-1" />
       </router-link>
 
     
