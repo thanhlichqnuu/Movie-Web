@@ -5,11 +5,12 @@ This is a movie streaming web application built with Vue 3. The application allo
 ## Main Feature
 
 - View lists of popular movies.
-- Search for movies by name.
+- Search for movies by name (support voice search).
 - Filter movies by criteria: Genre, country, status, release year.
 - View movie information.
 - Watch movie trailers.
 - Watch movie episodes.
+- Toggle light/dark mode, translate web.
 
 ## Technologies Used
 
@@ -20,6 +21,7 @@ This is a movie streaming web application built with Vue 3. The application allo
 - **SWRV**: Library for handling caching.
 - **ArtPlayer.js**: Library for supporting episode playback.
 - **Hls.js**: Library for handling m3u8 file.
+- **Vue i18n**: Library for handling translate.
 - **Apii Online API**: Movie data source.
 
 ## Installation and Running the Application
@@ -53,9 +55,11 @@ http://localhost:8080
 ├── src
 │   ├── assets      # Folder containing assets like images and CSS
 │   ├── components  # Folder containing application components
+│   ├── locale      # Folder containing translations json for vue i18n
 │   ├── pages       # Folder containing application pages
 │   ├── router      # Vue Router configuration
 │   ├── stores      # Pinia configuration
+│   ├── util        # Folder containing shared functions
 │   ├── App.vue     # Root component file
 │   ├── main.js     # Main entry point file
 ├── package.json    # npm configuration file
