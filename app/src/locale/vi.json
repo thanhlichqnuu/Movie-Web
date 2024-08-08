@@ -145,5 +145,9 @@
   "listening": "Đang nghe...",
   "list": "Danh sách",
   "note": "Server [NC] VIETSUB #1 hay gặp lỗi! Vui lòng đổi sang server khác để có trải nghiệm tốt nhất.",
-  "shareFb": "Chia sẻ"
+  "shareFb": "Chia sẻ",
+  "nextEpisode": "Tập tiếp",
+  "capture": "Chụp ảnh",
+  "lightOff": "Tắt đèn",
+  "lightOn": "Bật đèn"
 }

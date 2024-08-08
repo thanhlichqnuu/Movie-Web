@@ -4,9 +4,9 @@ import { useDebounceFn } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useI18n } from "petite-vue-i18n";
-import startSoundSrc from "../assets/start-record_effect.mp3";
-import endSoundSrc from "../assets/end-record_effect.mp3";
-import endSpeechSoundSrc from "../assets/result-record_effect.mp3";
+import startSoundSrc from "../assets/audio/start-record_effect.mp3";
+import endSoundSrc from "../assets/audio/end-record_effect.mp3";
+import endSpeechSoundSrc from "../assets/audio/result-record_effect.mp3";
 import sr from "@/util/speechRecognition";
 
 const emit = defineEmits(["closeSearchModal"]);

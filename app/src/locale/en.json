@@ -145,5 +145,9 @@
    "listening": "Listening...",
    "list": "List",
    "note": "Server [NC] VIETSUB #1 is frequently encountering issues! Please switch to a different server for the best experience.",
-   "shareFb": "Share"
+   "shareFb": "Share",
+   "nextEpisode": "Next episode",
+   "capture": "Capture",
+   "lightOff": "Turn off light",
+   "lightOn": "Turn on light"
 }

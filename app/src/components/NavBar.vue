@@ -84,9 +84,10 @@ const navigateTo = (routeName) => {
 
       <router-link :to="{ name: 'Home' }" class="ml-3">
         <img
-          src="../assets/logo.png"
+        :class="isTabletAndMobile ? 'mb-logo' : 'ml-4'"
+          src="../assets/image/logo.png"
           alt="logo"
-          width="55px"
+           :width="isTabletAndMobile ? '102px' : '122px'"
           height="auto"
           class="mt-1"
         />
@@ -122,7 +123,7 @@ const navigateTo = (routeName) => {
       <v-btn v-show="localeStore.locale === 'EN'" @click="changeLocale('VI')"
         ><img
           class="mr-1"
-          src="../assets/flag_en.png"
+          src="../assets/image/flag_en.png"
           alt="flag"
           width="auto"
           height="20px"
@@ -131,7 +132,7 @@ const navigateTo = (routeName) => {
       <v-btn v-show="localeStore.locale === 'VI'" @click="changeLocale('EN')"
         ><img
           class="mr-1"
-          src="../assets/flag_vi.png"
+          src="../assets/image/flag_vi.png"
           alt="flag"
           width="auto"
           height="20px"
@@ -196,5 +197,9 @@ const navigateTo = (routeName) => {
 <style scoped>
 .no-router-link_color {
   color: inherit;
+}
+
+.mb-logo {
+  margin-bottom: 2px;
 }
 </style>

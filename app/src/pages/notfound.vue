@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .image {
-  background: url("../assets/bg.gif") no-repeat center;
+  background: url("../assets/image/bg.gif") no-repeat center;
   height: 400px;
 }
 </style>

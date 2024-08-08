@@ -9,6 +9,7 @@ const localeStore = useLocaleStore();
 const route = useRoute();
 const movieName = ref(null);
 const movieOriginName = ref(null);
+const episodeName = ref(null);
 const isLoading = ref(true);
 const { t } = useI18n();
 
@@ -28,6 +29,20 @@ const getMovieName = async (slug) => {
     return;
   } finally {
     isLoading.value = false;
+  }
+};
+
+const getEpisodeName = async (slugEpisode) => {
+  const { data } = await axios.get(
+    `https://apii.online/apii/phim/${route.params.slugMovie}`
+  );
+  const episode = data.episodes
+    .flatMap((ep) => ep.server_data)
+    .find((ep) => ep.slug === slugEpisode);
+
+  episodeName.value = episode ? episode.name : slugEpisode;
+  if (!episode?.name.includes("Tập")) {
+    episodeName.value = `Tập ${episode.name}`;
   }
 };
 
@@ -59,7 +74,7 @@ const breadcrumbs = computed(() => {
               to: `/${route.params.slugMovie}`,
             },
             {
-              text: route.params.slugEpisode,
+              text: episodeName.value,
             },
           ];
         }
@@ -77,9 +92,19 @@ const breadcrumbs = computed(() => {
 
 watch(
   () => route.params.slugMovie,
-  (newSlug) => {
+  async (newSlug) => {
     if (newSlug) {
-      getMovieName(newSlug);
+      await getMovieName(newSlug);
+    }
+  },
+  { immediate: true }
+);
+
+watch(
+  () => route.params.slugEpisode,
+  async (newSlugEpisode) => {
+    if (newSlugEpisode) {
+      await getEpisodeName(newSlugEpisode);
     }
   },
   { immediate: true }
