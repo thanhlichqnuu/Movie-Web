@@ -20,12 +20,15 @@ facebookStore.initFacebookPlugin();
       </h3>
       <div class="line" />
     </div>
-    <div
+    <div class="fb-comment-container mt-2">
+      <div
       class="fb-comments"
       :data-href="href"
       data-width="100%"
       data-numposts="5"
     ></div>
+    </div>
+    
   </div>
 </template>
 
@@ -33,5 +36,8 @@ facebookStore.initFacebookPlugin();
 .line {
   border: 1px solid #b5e745;
   width: 100%;
+}
+.fb-comment-container {
+  background-color: white;
 }
 </style>
