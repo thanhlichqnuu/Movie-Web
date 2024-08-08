@@ -6,16 +6,16 @@ import MovieCard from "@/components/MovieCard.vue";
 const props = defineProps({
   movies: {
     type: Array,
-    required: true
+    required: true,
   },
   totalPages: {
     type: Number,
-    required: true
+    required: true,
   },
   currentPage: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 });
 
 const emit = defineEmits(["update:currentPage"]);
@@ -44,5 +44,3 @@ const isMobile = computed(() => windowWidth.value < 640);
     />
   </v-main>
 </template>
-
-

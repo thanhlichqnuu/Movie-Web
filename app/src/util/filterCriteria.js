@@ -134,7 +134,11 @@ export function useFilterCriteria() {
   ]);
 
   const generateMap = (options) => {
-    return computed(() => Object.fromEntries(options.value.map((option) => [option.value, option.text])));
+    return computed(() =>
+      Object.fromEntries(
+        options.value.map((option) => [option.value, option.text])
+      )
+    );
   };
 
   const statusMap = generateMap(statusOptions);
@@ -147,6 +151,6 @@ export function useFilterCriteria() {
     categoryOptions,
     statusMap,
     countryMap,
-    categoryMap
+    categoryMap,
   };
 }

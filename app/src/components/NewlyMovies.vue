@@ -113,7 +113,7 @@ onMounted(() => {
             <v-badge color="yellow" class="mb-2 ml-7">
               <template v-slot:badge>
                 <v-icon class="mr-1">mdi-star</v-icon>
-                <span>{{ movie.imdb_rating ? movie.imdb_rating : 0}}</span>
+                <span>{{ movie.imdb_rating ? movie.imdb_rating : 0 }}</span>
               </template>
             </v-badge>
             <v-badge color="red" class="ml-13 mb-2">

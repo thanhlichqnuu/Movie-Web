@@ -90,7 +90,7 @@ const setupPlayer = async () => {
     id: currentEpisode.value.link_m3u8,
     url: currentEpisode.value.link_m3u8,
     type: "m3u8",
-    poster: "https://i.postimg.cc/7ZWhD60s/poster-artplayer.jpg",
+    poster: "https://i.postimg.cc/mkhWGSXn/poster-artplayer-2.jpg",
     volume: 1,
     autoPlayback: true,
     setting: true,

@@ -41,7 +41,7 @@ const fetcher = async (url) => {
 
 const { data } = useSWRV(urls, fetcher, {
   refreshInterval: 3600000,
-  revalidateOnFocus: false
+  revalidateOnFocus: false,
 });
 
 const listLabel = computed(() => t("list"));
@@ -53,7 +53,9 @@ const filterText = computed(() => {
   if (category) filters.push(`${t("category")} ${categoryMap.value[category]}`);
   if (status) filters.push(`${t("status")} ${statusMap.value[status]}`);
   if (country) filters.push(`${t("country")} ${countryMap.value[country]}`);
-  return filters.length ? `${listLabel.value} ${route.name} ${filters.join(", ")}` : "";
+  return filters.length
+    ? `${listLabel.value} ${route.name} ${filters.join(", ")}`
+    : "";
 });
 
 watch(
@@ -68,7 +70,7 @@ watch(currentPage, async (newPage) => {
   const query = { ...route.query, page: newPage };
   await router.push({ query });
   window.scrollTo({ top: 0, behavior: "smooth" });
-})
+});
 
 watch(data, (newData) => {
   if (newData) {
@@ -82,16 +84,21 @@ watch(data, (newData) => {
   <v-container fluid class="mt-n10">
     <v-row>
       <v-col :cols="isTabletAndMobile ? 12 : 8">
-        <span class="filter-text mt-14 mb-n2" v-if="filterText">{{ filterText }}</span>
+        <span class="filter-text mt-14 mb-n2" v-if="filterText">{{
+          filterText
+        }}</span>
         <v-row v-if="isLoading" class="mt-9 d-flex justify-start align-center">
           <v-col
             :cols="isTabletAndMobile ? 6 : 12"
             :md="isTabletAndMobile ? null : 3"
             :sm="isTabletAndMobile ? null : 4"
             v-for="n in 24"
-            
           >
-            <v-skeleton-loader elevation="2" max-width="100%" type="image, heading, subtitle"></v-skeleton-loader>
+            <v-skeleton-loader
+              elevation="2"
+              max-width="100%"
+              type="image, heading, subtitle"
+            ></v-skeleton-loader>
           </v-col>
         </v-row>
         <movie-list

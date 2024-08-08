@@ -45,15 +45,18 @@ const breadcrumbs = computed(() => {
 
       if (matchedRoute.name === "Detail" && route.params.slugMovie) {
         text =
-          localeStore.locale === "VI" ? movieName.value : movieOriginName.value || movieName.value
+          localeStore.locale === "VI"
+            ? movieName.value
+            : movieOriginName.value || movieName.value;
       } else if (matchedRoute.name === "Player") {
         if (route.params.slugEpisode) {
           return [
             {
-             text: localeStore.locale === "VI"
-  ? movieName.value : movieOriginName.value || movieName.value,
-to: `/${route.params.slugMovie}`,
-
+              text:
+                localeStore.locale === "VI"
+                  ? movieName.value
+                  : movieOriginName.value || movieName.value,
+              to: `/${route.params.slugMovie}`,
             },
             {
               text: route.params.slugEpisode,

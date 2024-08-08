@@ -11,7 +11,7 @@ import FacebookComments from "@/components/FacebookComments.vue";
   <v-app>
     <nav-bar />
     <v-main>
-      <movies-slide apiKey="singleMovies"/>
+      <movies-slide apiKey="singleMovies" />
       <single-movies>
         <template v-slot:sidebar>
           <newly-movies />
@@ -22,5 +22,3 @@ import FacebookComments from "@/components/FacebookComments.vue";
     <footer-bar />
   </v-app>
 </template>
-
-

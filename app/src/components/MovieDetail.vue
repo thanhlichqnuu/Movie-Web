@@ -11,8 +11,7 @@ const movie = ref(null);
 const isShowTrailerModal = ref(false);
 const { width: windowWidth } = useWindowSize();
 const isSmallTabletAndMobile = computed(() => windowWidth.value < 768);
-const reversedEpisodes = ref(null)
-
+const reversedEpisodes = ref(null);
 
 const emit = defineEmits(["movieLoaded"]);
 
@@ -22,7 +21,7 @@ const TrailerModal = defineAsyncComponent(() =>
 
 const fetcher = async (url) => {
   try {
-    const { data } = await axios.get(url)
+    const { data } = await axios.get(url);
     data.movie.content = data.movie.content.replace(
       /<\/?[^>]+(>|$)|&quot;|&#39;|&nbsp;/g,
       ""
@@ -40,19 +39,16 @@ const { data } = useSWRV(
   fetcher,
   {
     refreshInterval: 3600000,
-    revalidateOnFocus: false
+    revalidateOnFocus: false,
   }
 );
 
 watch(data, (newMovie) => {
   if (newMovie) {
     movie.value = newMovie;
-    emit("movieLoaded")
+    emit("movieLoaded");
   }
 });
-
-
-
 
 const trailerAvailable = computed(() => movie.value.movie.trailer_url);
 
@@ -66,13 +62,13 @@ const loadMovie = () => {
   router.push({
     name: "Player",
     params: {
-      slugEpisode: reversedEpisodes.value[0].server_data[0].slug
+      slugEpisode: reversedEpisodes.value[0].server_data[0].slug,
     },
   });
 };
 
 watch(route, () => {
-  movie.value = null; 
+  movie.value = null;
 });
 
 watch(
@@ -84,14 +80,12 @@ watch(
   },
   { immediate: true }
 );
-
 </script>
 
 <template>
   <v-container>
     <v-card v-if="movie">
       <v-row>
-       
         <v-col cols="12" class="background-container d-flex">
           <v-img
             :src="movie.movie.poster_url"
@@ -99,12 +93,9 @@ watch(
             cover
             position="center"
           />
-         
+
           <template v-if="!isSmallTabletAndMobile">
-            
-          
             <v-col cols="6" sm="4" class="d-flex justify-center align-center">
-              
               <v-img :src="movie.movie.thumb_url" height="70%" />
             </v-col>
             <v-col
@@ -211,12 +202,10 @@ watch(
                       .slice(-3)
                       .reverse()"
                     :key="episode.slug"
-                   class="d-flex"
-                    
+                    class="d-flex"
                   >
-                  
                     <v-btn
-                    class="ml-3"
+                      class="ml-3"
                       color="grey-darken-2"
                       @click="
                         router.push({
@@ -229,8 +218,6 @@ watch(
                       size="small"
                       >{{ episode.name }}</v-btn
                     >
-                 
-                    
                   </div>
                 </v-row>
               </v-list-item>
@@ -243,7 +230,9 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.episode_current ? movie.movie.episode_current : "Đang cập nhật"
+                      movie.movie.episode_current
+                        ? movie.movie.episode_current
+                        : "Đang cập nhật"
                     }}</v-list-item-subtitle>
                   </v-col>
                 </v-row>
@@ -257,7 +246,9 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.episode_total ? movie.movie.episode_total : "Đang cập nhật"
+                      movie.movie.episode_total
+                        ? movie.movie.episode_total
+                        : "Đang cập nhật"
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>
@@ -353,7 +344,9 @@ watch(
                   </v-col>
                   <v-col cols="8" class="d-flex">
                     <v-list-item-subtitle class="text_size">{{
-                      movie.movie.quality ? movie.movie.quality : "Đang cập nhật"
+                      movie.movie.quality
+                        ? movie.movie.quality
+                        : "Đang cập nhật"
                     }}</v-list-item-subtitle></v-col
                   >
                 </v-row>
@@ -441,5 +434,4 @@ watch(
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
 </style>

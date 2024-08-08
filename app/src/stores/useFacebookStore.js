@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useFacebookStore = defineStore('facebook', {
+export const useFacebookStore = defineStore("facebook", {
   state: () => ({
     fbSDKLoaded: false,
   }),
@@ -12,19 +12,19 @@ export const useFacebookStore = defineStore('facebook', {
         } else if (window.FB) {
           this.fbSDKLoaded = true;
           window.FB.init({
-            appId: '973607627550804',
+            appId: "973607627550804",
             autoLogAppEvents: true,
             xfbml: true,
-            version: 'v20.0',
+            version: "v20.0",
           });
           resolve(window.FB);
         } else {
           window.fbAsyncInit = () => {
             window.FB.init({
-              appId: '973607627550804',
+              appId: "973607627550804",
               autoLogAppEvents: true,
               xfbml: true,
-              version: 'v20.0',
+              version: "v20.0",
             });
             this.fbSDKLoaded = true;
             resolve(window.FB);
@@ -36,9 +36,9 @@ export const useFacebookStore = defineStore('facebook', {
             if (d.getElementById(id)) return;
             js = d.createElement(s);
             js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk.js';
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
-          })(document, 'script', 'facebook-jssdk');
+          })(document, "script", "facebook-jssdk");
         }
       });
     },

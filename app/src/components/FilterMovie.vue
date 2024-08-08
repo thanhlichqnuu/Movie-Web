@@ -10,15 +10,15 @@ const filters = ref({
   year: "",
   status: "",
   country: "",
-  category: ""
+  category: "",
 });
 
 const emit = defineEmits(["closeFilterModal"]);
 
 const applyFilter = () => {
   const query = { ...filters.value, page: 1 };
-  
-  Object.keys(query).forEach(key => {
+
+  Object.keys(query).forEach((key) => {
     if (query[key] === "") {
       delete query[key];
     }
@@ -26,7 +26,7 @@ const applyFilter = () => {
 
   router.push({ query });
   emit("closeFilterModal");
-}
+};
 
 const clearFilter = () => {
   filters.value = { year: "", status: "", country: "", category: "" };

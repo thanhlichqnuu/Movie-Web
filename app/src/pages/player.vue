@@ -15,10 +15,10 @@ const route = useRoute();
     <nav-bar />
     <v-main>
       <v-container class="pt-0">
-        <breadcrumb class="mb-n4"/>
+        <breadcrumb class="mb-n4" />
         <player-modal>
           <template v-slot:newlymovies>
-           <newly-movies /> 
+            <newly-movies />
           </template>
           <template v-slot:fbdiv>
             <facebook-comments
@@ -26,11 +26,8 @@ const route = useRoute();
             />
           </template>
         </player-modal>
-        
       </v-container>
     </v-main>
     <footer-bar />
   </v-app>
 </template>
-
-

@@ -6,7 +6,7 @@ import Detail from "@/pages/detail.vue";
 import NotFound from "@/pages/notfound.vue";
 import Player from "@/pages/player.vue";
 import SeriesMovie from "@/pages/seriesmovie.vue";
-import TvShow from "@/pages/tvshow.vue"
+import TvShow from "@/pages/tvshow.vue";
 
 const currentYear = new Date().getFullYear();
 
@@ -15,39 +15,38 @@ const routes = [
     path: "/",
     name: "Home",
     component: Index,
-    
   },
   {
     path: "/anime",
     name: "Anime",
     component: Anime,
     meta: {
-      title: `Danh Sách Anime Đầy Đủ Nhất | Tổng Hợp Những Anime Hay | Anime Mới Nhất ${currentYear}`
-    }
+      title: `Danh Sách Anime Đầy Đủ Nhất | Tổng Hợp Những Anime Hay | Anime Mới Nhất ${currentYear}`,
+    },
   },
   {
     path: "/phim-le",
     name: "Movie",
     component: SingleMovie,
     meta: {
-      title: `Danh Sách Phim Lẻ Đầy Đủ Nhất | Tổng Hợp Những Phim Lẻ Hay | Phim Lẻ Mới Nhất ${currentYear}`
-    }
+      title: `Danh Sách Phim Lẻ Đầy Đủ Nhất | Tổng Hợp Những Phim Lẻ Hay | Phim Lẻ Mới Nhất ${currentYear}`,
+    },
   },
   {
     path: "/phim-bo",
     name: "Series",
     component: SeriesMovie,
     meta: {
-      title: `Danh Sách Phim Bộ Đầy Đủ Nhất | Tổng Hợp Những Phim Bộ Hay | Phim Bộ Mới Nhất ${currentYear}`
-    }
+      title: `Danh Sách Phim Bộ Đầy Đủ Nhất | Tổng Hợp Những Phim Bộ Hay | Phim Bộ Mới Nhất ${currentYear}`,
+    },
   },
   {
     path: "/tv-show",
     name: "TV Show",
     component: TvShow,
     meta: {
-      title: `Danh Sách TV Show Đầy Đủ Nhất | Tổng Hợp Những TV Show Hay | TV Show Mới Nhất ${currentYear}`
-    }
+      title: `Danh Sách TV Show Đầy Đủ Nhất | Tổng Hợp Những TV Show Hay | TV Show Mới Nhất ${currentYear}`,
+    },
   },
   {
     path: "/:slugMovie",
@@ -66,8 +65,8 @@ const routes = [
     name: "404",
     component: NotFound,
     meta: {
-      title: "404"
-    }
+      title: "404",
+    },
   },
 ];
 
@@ -77,7 +76,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  document.title = to.meta?.title ?? 'Ghiền Phim - ghienphim.fun'
-})
+  document.title = to.meta?.title ?? "Ghiền Phim - ghienphim.fun";
+});
 
 export default router;

@@ -45,8 +45,8 @@ watch(data, (newData) => {
   }
 });
 const isMobile = /iPhone|Android|Windows Phone|BlackBerry/i.test(
-    navigator.userAgent
-  );
+  navigator.userAgent
+);
 </script>
 
 <template>

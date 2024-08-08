@@ -4,9 +4,9 @@ import { useDebounceFn } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useI18n } from "petite-vue-i18n";
-import startSoundSrc from '../assets/start-record_effect.mp3';
-import endSoundSrc from '../assets/end-record_effect.mp3';
-import endSpeechSoundSrc from '../assets/result-record_effect.mp3';
+import startSoundSrc from "../assets/start-record_effect.mp3";
+import endSoundSrc from "../assets/end-record_effect.mp3";
+import endSpeechSoundSrc from "../assets/result-record_effect.mp3";
 import sr from "@/util/speechRecognition";
 
 const emit = defineEmits(["closeSearchModal"]);
@@ -20,7 +20,7 @@ const isRecording = ref(false);
 const isListening = ref(false);
 
 const startSound = new Audio(startSoundSrc);
-const endSound = new Audio(endSoundSrc); 
+const endSound = new Audio(endSoundSrc);
 const endSpeechSound = new Audio(endSpeechSoundSrc);
 
 const handleSearch = async (keyword) => {
@@ -35,7 +35,7 @@ const handleSearch = async (keyword) => {
     );
     searchSuggestion.value = data.items;
   } catch (err) {
-    console.log(err)
+    console.log(err);
   } finally {
     isLoading.value = false;
   }
@@ -43,12 +43,9 @@ const handleSearch = async (keyword) => {
 
 const handleSearchDebounce = useDebounceFn(handleSearch, 300);
 
-watch(
-  keyword,
-  (newKeyword) => {
-    handleSearchDebounce(newKeyword);
-  }
-);
+watch(keyword, (newKeyword) => {
+  handleSearchDebounce(newKeyword);
+});
 
 const navigateToDetail = (slug) => {
   router.push({ name: "Detail", params: { slugMovie: slug } });
@@ -59,7 +56,7 @@ const defaultLabel = computed(() => t("keyword"));
 const listeningLabel = computed(() => t("listening"));
 
 const handleVoiceSearch = async () => {
-  sr.lang = 'vi-VN';
+  sr.lang = "vi-VN";
   sr.continuous = false;
   sr.interimResults = true;
 
@@ -89,7 +86,7 @@ const handleVoiceSearch = async () => {
   };
 
   sr.onerror = async (e) => {
-    if (e.error === 'not-allowed') {
+    if (e.error === "not-allowed") {
       const { toast } = await import("vue3-toastify");
       toast.error("Microphone access denied!");
     }
@@ -126,7 +123,10 @@ const toggleMic = () => {
         </v-btn>
       </template>
     </v-text-field>
-    <v-list v-if="searchSuggestion?.length || isListening" class="mt-4 rounded max-h-400">
+    <v-list
+      v-if="searchSuggestion?.length || isListening"
+      class="mt-4 rounded max-h-400"
+    >
       <v-list-item
         v-for="movie in searchSuggestion"
         :key="movie._id"

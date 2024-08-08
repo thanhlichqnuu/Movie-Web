@@ -6,7 +6,7 @@ const currentYear = new Date().getFullYear();
   <div>
     <v-footer class="d-flex flex-column align-center" color="#212121">
       <v-card-text class="grey darken-4 text-center w-100 py-2">
-        {{ $t('Contact') }}: thanhlich2103gg@gmail.com
+        {{ $t("Contact") }}: thanhlich2103gg@gmail.com
       </v-card-text>
       <v-card-text class="text-center w-100 py-2">
         © Copyright {{ currentYear }} Ghienphim.fun. All rights reserved.

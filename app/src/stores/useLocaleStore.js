@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useLocaleStore = defineStore('localeStore', {
+export const useLocaleStore = defineStore("localeStore", {
   state: () => ({
-    locale: localStorage.getItem("localeKey") || 'VI',
+    locale: localStorage.getItem("localeKey") || "VI",
   }),
   actions: {
     setLocale(newLocale) {
       this.locale = newLocale;
       localStorage.setItem("localeKey", this.locale);
-    }
-  }
+    },
+  },
 });
