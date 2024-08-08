@@ -154,7 +154,7 @@ watch(
                   <v-card-text class="text_dim_gray">{{
                     movie.movie.content
                   }}</v-card-text>
-                  <v-card-action class="d-flex ml-4">
+                  <v-card-action class="d-flex ml-2">
                     <v-btn
                       v-if="episodeAvailable"
                       color="light-blue-darken-1"
